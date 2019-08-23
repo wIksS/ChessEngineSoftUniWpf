@@ -1,0 +1,5 @@
+C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\bin\Debug\ChessEngine.Data.dll
+C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\bin\Debug\ChessEngine.Data.pdb
+C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.CoreCompileInputs.cache
+C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
+C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb
