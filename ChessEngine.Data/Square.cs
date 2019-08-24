@@ -8,6 +8,8 @@ namespace ChessEngine.Data
 {
     public class Square : BasePositionModel
     {
+		public bool CursorOver { get; set; }
+
 		public bool EnPasIsWhite { get; set; } 
 		public bool EnPasPossible { get; set; }
 

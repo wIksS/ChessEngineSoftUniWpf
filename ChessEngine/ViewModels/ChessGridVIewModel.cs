@@ -1,4 +1,5 @@
-﻿using ChessEngine.Data;
+﻿using ChessEngine.Common;
+using ChessEngine.Data;
 using ChessEngine.Services.Contracts;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,9 @@ namespace ChessEngine.ViewModels
 		private ICommand initCommand;
         private ICommand dragInitCommand;
         private ICommand dragOverCommand;
-        private ChessFigure selectedFigure;
+		private ICommand dragEnterCommand;
+		private ICommand dragLeaveCommand;
+		private ChessFigure selectedFigure;
         private Square[,] board;
 
         public ChessGridViewModel(IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game)
@@ -45,7 +48,31 @@ namespace ChessEngine.ViewModels
             }
         }
 
-        public ICommand DragInitCommand
+		public ICommand DragLeaveCommand
+		{
+			get
+			{
+				if (dragLeaveCommand == null)
+				{
+					dragLeaveCommand = new RelayCommand<ChessFigure>(DragFigureLeave);
+				}
+				return dragLeaveCommand;
+			}
+		}
+
+		public ICommand DragEnterCommand
+		{
+			get
+			{
+				if (dragEnterCommand == null)
+				{
+					dragEnterCommand = new RelayCommand<ChessFigure>(DragFigureEnter);
+				}
+				return dragEnterCommand;
+			}
+		}
+
+		public ICommand DragInitCommand
         {
             get
             {
@@ -69,7 +96,23 @@ namespace ChessEngine.ViewModels
             }
         }
 
-        public void Init(object data)
+		public void DragFigureEnter(ChessFigure figure)
+		{
+			dynamic dynamicFigure = selectedFigure;
+			ChessMoveInfo MoveInfo = rulesService.Check(board, dynamicFigure, figure);
+			if (MoveInfo)
+			{
+				board[figure.Row, figure.Col].CursorOver = true;
+			}
+		}
+
+		public void DragFigureLeave(ChessFigure figure)
+		{
+			if(board[figure.Row, figure.Col].CursorOver)
+				board[figure.Row, figure.Col].CursorOver = false;
+		}
+
+		public void Init(object data)
         {
             board = generatorService.Generate_from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
             foreach (var square in board)
@@ -84,42 +127,17 @@ namespace ChessEngine.ViewModels
         }
 
         public void DropFigure(ChessFigure figure)
-        {            
-            dynamic dynamicFigure = selectedFigure;
+        {
+			DragFigureLeave(figure);
+
+			dynamic dynamicFigure = selectedFigure;
 
 			ChessMoveInfo MoveInfo = rulesService.Check(board, dynamicFigure, figure);
 
 			if (GameService.Process_move(board,MoveInfo))
 			{
-				ChessGrid.Clear();
-				foreach (var square in board)
-				{
-					ChessGrid.Add(square);
-				}
+				//TODO: implement pawn promotion
 			}
-
-			//if (!rulesService.Check(board, dynamicFigure, figure).IsAllowed)
-			//{
-			//    return;
-			//}
-			//var selectedSquare = board[selectedFigure.Row, selectedFigure.Col];
-			//var destinationSquare = board[figure.Row, figure.Col];
-
-			//var selectedSquareIndex = ChessGrid.IndexOf(selectedSquare);
-			//var destinationSquareIndex = ChessGrid.IndexOf(destinationSquare);
-			//var newSelectedSquare =
-			//    new Square(selectedSquare.Row, selectedSquare.Col, selectedSquare.IsWhite,
-			//    new Empty(selectedSquare.Row, selectedSquare.Col));
-			//ChessGrid[selectedSquareIndex] = newSelectedSquare;
-
-			//selectedFigure.Row = destinationSquare.Row;
-			//selectedFigure.Col = destinationSquare.Col;
-			//var newDestinationSquare = new Square(destinationSquare.Row, destinationSquare.Col, destinationSquare.IsWhite,
-			//    selectedFigure);
-			//ChessGrid[destinationSquareIndex] = newDestinationSquare;
-
-			//board[selectedSquare.Row, selectedSquare.Col] = newSelectedSquare;
-			//board[destinationSquare.Row, destinationSquare.Col] = newDestinationSquare;
 		}
 
     }

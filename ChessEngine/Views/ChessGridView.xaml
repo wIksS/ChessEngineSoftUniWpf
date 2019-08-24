@@ -46,13 +46,33 @@
                                             <Setter Property="Fill" Value="#f0d9b5"></Setter>
                                         </DataTrigger>
                                     </Style.Triggers>
+                                    
+                                </Style>
+                            </Rectangle.Style>
+                        </Rectangle>
+                        <Rectangle>
+                            <Rectangle.Style>
+                                <Style TargetType="Rectangle">
+                                    <Setter Property="Fill" Value="Green"></Setter>
+                                    <Setter Property="Opacity" Value="0.0"></Setter>
+
+                                    <Style.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding CursorOver}"
+                                            Value="True">
+                                            <Setter Property="Opacity" Value="0.5"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+
                                 </Style>
                             </Rectangle.Style>
                         </Rectangle>
                         <controls:ChessFigureView
                             Figure="{Binding Figure}"                            
                             DragInitCommand="{Binding DataContext.DragInitCommand, ElementName=chessGrid}"
-                            DragOverCommand="{Binding DataContext.DragOverCommand, ElementName=chessGrid}">
+                            DragOverCommand="{Binding DataContext.DragOverCommand, ElementName=chessGrid}"
+                            DragEnterCommand="{Binding DataContext.DragEnterCommand, ElementName=chessGrid}"
+                            DragLeaveCommand="{Binding DataContext.DragLeaveCommand, ElementName=chessGrid}">
                             
                         </controls:ChessFigureView>
                     </Grid>

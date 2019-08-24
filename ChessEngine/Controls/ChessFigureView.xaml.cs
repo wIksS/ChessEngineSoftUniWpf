@@ -39,8 +39,18 @@ namespace ChessEngine.Controls
               "DragOverCommand",
                typeof(ICommand),
                typeof(ChessFigureView));
+		public static readonly DependencyProperty DragEnterCommandProperty =
+		DependencyProperty.Register(
+			  "DragEnterCommand",
+			   typeof(ICommand),
+			   typeof(ChessFigureView));
+		public static readonly DependencyProperty DragLeaveCommandProperty =
+		DependencyProperty.Register(
+			  "DragLeaveCommand",
+			   typeof(ICommand),
+			   typeof(ChessFigureView));
 
-        public ChessFigureView()
+		public ChessFigureView()
         {
             InitializeComponent();
         }
@@ -57,7 +67,31 @@ namespace ChessEngine.Controls
             }
         }
 
-        public ICommand DragInitCommand
+		public ICommand DragLeaveCommand
+		{
+			get
+			{
+				return (ICommand)GetValue(DragLeaveCommandProperty);
+			}
+			set
+			{
+				SetValue(DragLeaveCommandProperty, value);
+			}
+		}
+
+		public ICommand DragEnterCommand
+		{
+			get
+			{
+				return (ICommand)GetValue(DragEnterCommandProperty);
+			}
+			set
+			{
+				SetValue(DragEnterCommandProperty, value);
+			}
+		}
+
+		public ICommand DragInitCommand
         {
             get
             {
@@ -96,10 +130,7 @@ namespace ChessEngine.Controls
         {
             DragOverCommand.Execute(Figure);
         }
-#endif
-
-
-#if TESTING_DRAGDROP
+#else
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
@@ -163,18 +194,25 @@ namespace ChessEngine.Controls
 
 					//Hide the element to make the illusion that the control is moving,
 					// while it's just the cursor which is changed
-					this.Visibility = Visibility.Hidden;
+					FigImage.Opacity = 0.5;
 
 					var effects = DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
 
-					Mouse.SetCursor(Cursor);
+					FigImage.Opacity = 1;
 
-					if (effects == DragDropEffects.None)
-					{
-						(data.GetData("Object") as ChessFigureView).Visibility = Visibility.Visible;
-					}
+					Mouse.SetCursor(Cursor);
 				}
 			}
+		}
+		protected override void OnDragEnter(DragEventArgs e)
+		{
+			base.OnDragEnter(e);
+			DragEnterCommand.Execute(Figure);
+		}
+		protected override void OnDragLeave(DragEventArgs e)
+		{
+			base.OnDragLeave(e);
+			DragLeaveCommand.Execute(Figure);
 		}
 		/// <summary>
 		/// Lol just set the cursor to the image of the figure, why not
@@ -187,9 +225,7 @@ namespace ChessEngine.Controls
 		}
 		protected override void OnDrop(DragEventArgs e)
 		{
-			(e.Data.GetData("Object") as ChessFigureView).Visibility = Visibility.Visible;
 			base.OnDrop(e);
-			//Set visibility back to visible
 			
 			DragOverCommand.Execute(Figure);
 			e.Handled = true;

@@ -24,6 +24,11 @@ namespace ChessEngine.Data
 		public int EnPasRow { get; set; }
 		public int EnPasCol { get; set; }
 
+		public static implicit operator bool(ChessMoveInfo moveinfo)
+		{
+			return moveinfo.IsAllowed;
+		}
+
 		public ChessMoveInfo(bool IsAllowed = false)
 		{
 			this.IsAllowed = IsAllowed;

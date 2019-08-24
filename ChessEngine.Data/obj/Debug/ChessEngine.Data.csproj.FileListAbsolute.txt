@@ -9,3 +9,4 @@ C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\Ches
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.CoreCompileInputs.cache
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.Fody.CopyLocal.cache

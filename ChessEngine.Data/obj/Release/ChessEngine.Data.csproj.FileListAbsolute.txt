@@ -1,0 +1,7 @@
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\bin\Release\ChessEngine.Data.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\bin\Release\ChessEngine.Data.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Release\ChessEngine.Data.csprojAssemblyReference.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Release\ChessEngine.Data.csproj.CoreCompileInputs.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Release\ChessEngine.Data.csproj.Fody.CopyLocal.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Release\ChessEngine.Data.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Release\ChessEngine.Data.pdb
