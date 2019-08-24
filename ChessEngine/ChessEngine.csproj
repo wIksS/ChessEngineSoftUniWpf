@@ -65,7 +65,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstraper.cs" />
-    <Compile Include="Common\Constants.cs" />
     <Compile Include="Controls\ChessFigureView.xaml.cs">
       <DependentUpon>ChessFigureView.xaml</DependentUpon>
     </Compile>

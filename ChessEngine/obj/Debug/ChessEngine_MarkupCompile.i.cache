@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine\obj\Debug\
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\
 ChessEngine
 none
 false
 DEBUG;TRACE
-C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine\App.xaml
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\App.xaml
 3-117389992
 
-201875905103
-17-1911581871
+19827403359
+171520353481
 Controls\ChessFigureView.xaml;MainWindow.xaml;Views\ChessGridView.xaml;
 
-False
+True
 

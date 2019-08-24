@@ -43,11 +43,16 @@
   <ItemGroup>
     <Compile Include="BaseModel.cs" />
     <Compile Include="BasePositionModel.cs" />
+    <Compile Include="Bishop.cs" />
     <Compile Include="ChessFigure.cs" />
+    <Compile Include="ChessMoveInfo.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="King.cs" />
     <Compile Include="Queen.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Empty.cs" />
     <Compile Include="Pawn.cs" />
+    <Compile Include="Rook.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

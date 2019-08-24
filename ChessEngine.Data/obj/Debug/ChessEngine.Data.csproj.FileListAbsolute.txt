@@ -3,3 +3,9 @@ C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\bin\Debug\ChessEngine.
 C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.CoreCompileInputs.cache
 C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
 C:\Users\Sadmin\source\repos\ChessEngine\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\bin\Debug\ChessEngine.Data.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\bin\Debug\ChessEngine.Data.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csprojAssemblyReference.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.CoreCompileInputs.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb

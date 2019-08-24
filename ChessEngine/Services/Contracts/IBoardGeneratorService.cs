@@ -10,5 +10,6 @@ namespace ChessEngine.Services.Contracts
     public interface IBoardGeneratorService
     {
         Square[,] Generate();
-    }
+        Square[,] Generate_from_fen(string fen);
+	}
 }

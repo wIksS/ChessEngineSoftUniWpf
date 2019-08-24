@@ -8,9 +8,15 @@ namespace ChessEngine.Data
 {
     public class Square : BasePositionModel
     {
-        public Square(int row, int col, bool isWhite, ChessFigure figure)
+		public bool EnPasIsWhite { get; set; } 
+		public bool EnPasPossible { get; set; }
+
+		public Square(int row, int col, bool isWhite, ChessFigure figure)
         {
-            this.Row = row;
+			this.EnPasIsWhite = true;
+			this.EnPasPossible = false;
+
+			this.Row = row;
             this.Col = col;
             this.IsWhite = isWhite;
             this.Figure = figure;

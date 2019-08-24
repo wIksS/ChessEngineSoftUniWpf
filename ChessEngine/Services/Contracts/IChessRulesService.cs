@@ -9,9 +9,13 @@ namespace ChessEngine.Services.Contracts
 {
     public interface IChessRulesService
     {
-        bool Check(Square[,] board, Knight from, ChessFigure to);
-        bool Check(Square[,] board, Pawn from, ChessFigure to);
+		ChessMoveInfo Check(Square[,] board, Pawn from, ChessFigure to);
+		ChessMoveInfo Check(Square[,] board, Rook from, ChessFigure to);
+		ChessMoveInfo Check(Square[,] board, Knight from, ChessFigure to);
+		ChessMoveInfo Check(Square[,] board, Bishop from, ChessFigure to);
+		ChessMoveInfo Check(Square[,] board, King from, ChessFigure to);
+		ChessMoveInfo Check(Square[,] board, Queen from, ChessFigure to);
 
-        bool Check(Square[,] board, ChessFigure from, ChessFigure to);
+		ChessMoveInfo Check(Square[,] board, ChessFigure from, ChessFigure to);
     }
 }

@@ -69,7 +69,7 @@ namespace ChessEngine.ViewModels
 
         public void Init(object data)
         {
-            board = generatorService.Generate();
+            board = generatorService.Generate_from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
             foreach (var square in board)
             {
                 ChessGrid.Add(square);
@@ -84,7 +84,7 @@ namespace ChessEngine.ViewModels
         public void DragOver(ChessFigure figure)
         {            
             dynamic dynamicFigure = selectedFigure;
-            if (!rulesService.Check(board, dynamicFigure, figure))
+            if (!rulesService.Check(board, dynamicFigure, figure).IsAllowed)
             {
                 return;
             }

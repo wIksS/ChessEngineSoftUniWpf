@@ -10,7 +10,7 @@ namespace ChessEngine.Common
     {
         public const int BoardRows = 8;
         public const int BoardCols = 8;
-
+		public const int OffBoard = -1;
 
 
     }
