@@ -8,13 +8,13 @@ C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\Ches
 ChessEngine
 none
 false
-DEBUG;TRACE
+TRACE;DEBUG;TESTING_DRAGDROP
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\App.xaml
 3-117389992
 
 19827403359
-171520353481
+18385400158
 Controls\ChessFigureView.xaml;MainWindow.xaml;Views\ChessGridView.xaml;
 
-True
+False
 

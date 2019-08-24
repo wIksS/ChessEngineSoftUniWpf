@@ -20,7 +20,7 @@ namespace ChessEngine.Services
 		/// <returns></returns>
 		public string Generate_fen_from_board(Square[,] Board)
 		{
-			Debug.Assert(Board.GetLength(0) == 8 && Board.GetLength(1) == 8);
+			Debug.Assert(Board.GetLength(0) == 8 && Board.GetLength(1) == 8, "Trying to Generate fen from a board which is not 8x8");
 			string fen = "";
 			for (int i = 0; i < Board.GetLength(0); i++)
 			{
@@ -104,7 +104,7 @@ namespace ChessEngine.Services
 		/// <returns></returns>
 		public Square[,] Generate_from_fen(string fen)
 		{
-			Debug.Assert(Constants.BoardRows == 8 && Constants.BoardCols == 8);
+			Debug.Assert(Constants.BoardRows == 8 && Constants.BoardCols == 8, "Trying to generate a board from a fen when the board is not 8x8");
 
 			Square[,] Board = new Square[Constants.BoardRows, Constants.BoardCols];
 

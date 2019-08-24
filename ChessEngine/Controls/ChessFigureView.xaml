@@ -5,10 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ChessEngine.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid MouseDown="DragInitHandler" MouseUp="DragOverHandler">
+             d:DesignHeight="450" d:DesignWidth="800"
+             AllowDrop="True">
+    
+    <Grid>
+        <Image Source="{Binding Path=Figure.Image}" Name="FigImage"></Image>
+        <TextBlock></TextBlock>
+    </Grid>
+
+    <!--<Grid MouseDown="DragInitHandler" MouseUp="DragOverHandler">
         <Image Source="{Binding Path=Figure.Image}"></Image>
         <TextBlock></TextBlock>
-        <!--<Button Click="Button_Click"></Button>-->
-    </Grid>
+        --><!--<Button Click="Button_Click"></Button>--><!--
+    </Grid>-->
 </UserControl>

@@ -8,6 +8,8 @@ namespace ChessEngine.Data
 {
 	public class Rook : ChessFigure
 	{
+		public bool HasMoved { get; set; }
+
 		public Rook(int row, int col, bool isWhite, string image) :
 			base(row, col, isWhite, image)
 		{

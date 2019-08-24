@@ -68,7 +68,7 @@ namespace ChessEngine.Services
 
 		private bool[,] Generate_attack_board(Square[,] Board, ChessFigure fig)
 		{
-			Debug.Assert(fig.Name != "Empty");
+			Debug.Assert(fig.Name != "Empty", "Trying to generate attack field for a figure of type Empty");
 
 			bool[,] AttackBoard = new bool[Constants.BoardRows,Constants.BoardCols];
 
@@ -251,18 +251,27 @@ namespace ChessEngine.Services
 			///position will it endanger the enemy king or not.
 			bool IsEnemyKingCheck = Check_for_check(!from.IsWhite, board, Generate_attack_board(board, new Knight(to.Row, to.Col, from.IsWhite, "")));
 
+			ChessMoveInfo MoveInfo = new ChessMoveInfo(true, from.IsWhite);
+
+			if (to.Name != "Empty")
+			{
+				MoveInfo.TakenFigureRow = to.Row;
+				MoveInfo.TakenFigureCol = to.Col;
+			}
+
 			if (Math.Abs(from.Row - to.Row) == 2)
             {
                 if (Math.Abs(from.Col - to.Col) == 1)
                 {
-                    return new ChessMoveInfo(true, from.IsWhite);
-                }
+					return MoveInfo;
+				}
             }
             if (Math.Abs(from.Row - to.Row) == 1)
             {
                 if (Math.Abs(from.Col - to.Col) == 2)
                 {
-					return new ChessMoveInfo(true, from.IsWhite);
+
+					return MoveInfo;
 				}
             }
 			return new ChessMoveInfo(false);
@@ -297,6 +306,12 @@ namespace ChessEngine.Services
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false,from.IsWhite);
 
+			if (to.Name != "Empty")
+			{
+				MoveInfo.TakenFigureRow = to.Row;
+				MoveInfo.TakenFigureCol = to.Col;
+			}
+
 			if (from.IsWhite)
             {
 				IsPromotion = (to.Row == 0);
@@ -324,7 +339,8 @@ namespace ChessEngine.Services
 							MoveInfo.IsAllowed = true;
 							MoveInfo.IsPromotion = IsPromotion;
 							MoveInfo.EnemyKingIsCheck = IsEnemyKingCheck;
-							MoveInfo.WasEnPas = true;
+							MoveInfo.TakenFigureRow = to.Row;
+							MoveInfo.TakenFigureCol = to.Col-1;
 							return MoveInfo;
 						}
 					}
@@ -375,7 +391,8 @@ namespace ChessEngine.Services
 							MoveInfo.IsAllowed = true;
 							MoveInfo.IsPromotion = IsPromotion;
 							MoveInfo.EnemyKingIsCheck = IsEnemyKingCheck;
-							MoveInfo.WasEnPas = true;
+							MoveInfo.TakenFigureRow = to.Row;
+							MoveInfo.TakenFigureCol = to.Col + 1;
 							return MoveInfo;
 						}
 					}
@@ -426,7 +443,13 @@ namespace ChessEngine.Services
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false, from.IsWhite);
 
-			if(from.Row == to.Row)
+			if (to.Name != "Empty")
+			{
+				MoveInfo.TakenFigureRow = to.Row;
+				MoveInfo.TakenFigureCol = to.Col;
+			}
+
+			if (from.Row == to.Row)
 			{
 				for (int i = from.Col; i != to.Col; i += (from.Col > to.Col ? -1 : 1)) 
 				{
@@ -477,6 +500,12 @@ namespace ChessEngine.Services
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false, from.IsWhite);
 
+			if (to.Name != "Empty")
+			{
+				MoveInfo.TakenFigureRow = to.Row;
+				MoveInfo.TakenFigureCol = to.Col;
+			}
+
 			int deltaRow = from.Row - to.Row;
 			int deltaCol = from.Col - to.Col;
 			if (Math.Abs(deltaRow) != Math.Abs(deltaCol)) return new ChessMoveInfo(false);
@@ -525,7 +554,73 @@ namespace ChessEngine.Services
 
 		public ChessMoveInfo Check(Square[,] board, King from, ChessFigure to)
 		{
-			throw new NotImplementedException();
+			if (Check_for_color_match(from, to)) return new ChessMoveInfo(false);
+			
+			if (Check_if_king_is_check_after(board, from, to))
+			{
+				//Same idea but this time we check if the move puts
+				//the life of our dear king in danger.
+				return new ChessMoveInfo(false);
+			}
+
+			ChessMoveInfo MoveInfo = new ChessMoveInfo(true, from.IsWhite);
+
+			if (to.Name != "Empty")
+			{
+				MoveInfo.TakenFigureRow = to.Row;
+				MoveInfo.TakenFigureCol = to.Col;
+			}
+
+			if (Math.Abs(from.Col - to.Col) == 1 && Math.Abs(from.Row - to.Row) == 1)
+			{
+				return MoveInfo;
+			}
+			if (Math.Abs(from.Col - to.Col) == 1 && Math.Abs(from.Row - to.Row) == 0)
+			{
+				return MoveInfo;
+			}
+			if (Math.Abs(from.Col - to.Col) == 0 && Math.Abs(from.Row - to.Row) == 1)
+			{
+				return MoveInfo;
+			}
+			if (Constants.BoardCols == 8 && Constants.BoardRows == 8 &&
+				from.HasMoved == false) {
+				if (from.IsWhite)
+				{
+					if ( to.Row == 7 && to.Col == 6 &&
+						board[7, 7].Figure.Name=="Rook" && (board[7,7].Figure as Rook).HasMoved == false &&
+						Square_is_empty(board[7,6]) && Square_is_empty(board[7, 5]))
+					{
+						MoveInfo.WasKingSideCastle = true;
+						return MoveInfo;
+					}
+					if (to.Row == 7 && to.Col == 2 &&
+						board[7, 0].Figure.Name == "Rook" && (board[7, 0].Figure as Rook).HasMoved == false &&
+						Square_is_empty(board[7, 1]) && Square_is_empty(board[7, 2]) && Square_is_empty(board[7, 3]))
+					{
+						MoveInfo.WasQueenSideCastle = true;
+						return MoveInfo;
+					}
+				}
+				else
+				{
+					if (to.Row == 0 && to.Col == 6 &&
+						board[0, 7].Figure.Name == "Rook" && (board[0, 7].Figure as Rook).HasMoved == false &&
+						Square_is_empty(board[0, 6]) && Square_is_empty(board[0, 5]))
+					{
+						MoveInfo.WasKingSideCastle = true;
+						return MoveInfo;
+					}
+					if (to.Row == 0 && to.Col == 2 &&
+						board[0, 0].Figure.Name == "Rook" && (board[0, 0].Figure as Rook).HasMoved == false &&
+						Square_is_empty(board[0, 1]) && Square_is_empty(board[0, 2]) && Square_is_empty(board[0, 3]))
+					{
+						MoveInfo.WasQueenSideCastle = true;
+						return MoveInfo;
+					}
+				}
+			}
+			return new ChessMoveInfo(false);
 		}
 
 		public ChessMoveInfo Check(Square[,] board, Queen from, ChessFigure to)
@@ -554,6 +649,12 @@ namespace ChessEngine.Services
 			bool IsEnemyKingCheck = Check_for_check(!from.IsWhite, board, Generate_attack_board(board, new Queen(to.Row, to.Col, from.IsWhite, "")));
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false, from.IsWhite);
+
+			if (to.Name != "Empty")
+			{
+				MoveInfo.TakenFigureRow = to.Row;
+				MoveInfo.TakenFigureCol = to.Col;
+			}
 
 			int deltaRow = from.Row - to.Row;
 			int deltaCol = from.Col - to.Col;

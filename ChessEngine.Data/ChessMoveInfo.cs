@@ -12,7 +12,10 @@ namespace ChessEngine.Data
 		public bool MovedFigureIsWhite { get; set; }
 		public bool EnemyKingIsCheck { get; set; }
 		public bool IsPromotion { get; set; }
-		public bool WasEnPas { get; set; }
+		public bool WasKingSideCastle { get; set; }
+		public bool WasQueenSideCastle { get; set; }
+		public int TakenFigureRow { get; set; }
+		public int TakenFigureCol { get; set; }
 		public int EnPasRow { get; set; }
 		public int EnPasCol { get; set; }
 
@@ -23,7 +26,10 @@ namespace ChessEngine.Data
 			EnemyKingIsCheck = false;
 			IsPromotion = false;
 			EnPasRow = EnPasCol = Constants.OffBoard;
-			WasEnPas = false;
+			TakenFigureRow = Constants.OffBoard;
+			TakenFigureCol = Constants.OffBoard;
+			WasKingSideCastle = false;
+			WasQueenSideCastle = false;
 		}
 
 		public ChessMoveInfo(bool IsAllowed = false, bool MovedFigureIsWhite = false)
@@ -33,19 +39,40 @@ namespace ChessEngine.Data
 			EnemyKingIsCheck = false;
 			IsPromotion = false;
 			EnPasRow = EnPasCol = Constants.OffBoard;
-			WasEnPas = false;
+			TakenFigureRow = Constants.OffBoard;
+			TakenFigureCol = Constants.OffBoard;
+			WasKingSideCastle = false;
+			WasQueenSideCastle = false;
+		}
+
+		public ChessMoveInfo(bool IsAllowed = false, bool MovedFigureIsWhite = false, int TakenFigureRow = Constants.OffBoard, int TakenFigureCol = Constants.OffBoard)
+		{
+			this.IsAllowed = IsAllowed;
+			this.MovedFigureIsWhite = MovedFigureIsWhite;
+			EnemyKingIsCheck = false;
+			IsPromotion = false;
+			EnPasRow = EnPasCol = Constants.OffBoard;
+			this.TakenFigureRow = TakenFigureRow;
+			this.TakenFigureCol = TakenFigureCol;
+			WasKingSideCastle = false;
+			WasQueenSideCastle = false;
 		}
 
 		public ChessMoveInfo(bool IsAllowed = false, bool MovedFigureIsWhite = false, bool EnemyKingIsCheck = false,
-			bool IsPromotion = false, int EnPasRow = Constants.OffBoard, int EnPasCol = Constants.OffBoard, bool WasEnPas = false)
+			int TakenFigureRow = Constants.OffBoard, int TakenFigureCol = Constants.OffBoard,
+			bool IsPromotion = false, int EnPasRow = Constants.OffBoard, int EnPasCol = Constants.OffBoard,
+			bool WasKingSideCastle = false, bool WasQueenSideCastle = false)
 		{
 			this.IsAllowed = IsAllowed;
 			this.MovedFigureIsWhite = MovedFigureIsWhite;
 			this.EnemyKingIsCheck = EnemyKingIsCheck;
+			this.TakenFigureRow = TakenFigureRow;
+			this.TakenFigureCol = TakenFigureCol;
 			this.IsPromotion = IsPromotion;
 			this.EnPasRow = EnPasRow;
 			this.EnPasCol = EnPasCol;
-			this.WasEnPas = WasEnPas;
+			this.WasKingSideCastle = WasKingSideCastle;
+			this.WasQueenSideCastle = WasQueenSideCastle;
 		}
 	}
 }
