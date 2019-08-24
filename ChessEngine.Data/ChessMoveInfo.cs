@@ -8,6 +8,11 @@ namespace ChessEngine.Data
 {
 	public class ChessMoveInfo
 	{
+		public int FromRow { get; set; }
+		public int FromCol { get; set; }
+		public int ToRow { get; set; }
+		public int ToCol { get; set; }
+
 		public bool IsAllowed { get; set; }
 		public bool MovedFigureIsWhite { get; set; }
 		public bool EnemyKingIsCheck { get; set; }
@@ -30,6 +35,10 @@ namespace ChessEngine.Data
 			TakenFigureCol = Constants.OffBoard;
 			WasKingSideCastle = false;
 			WasQueenSideCastle = false;
+			FromRow = Constants.OffBoard;
+			FromCol = Constants.OffBoard;
+			ToRow = Constants.OffBoard;
+			ToCol = Constants.OffBoard;
 		}
 
 		public ChessMoveInfo(bool IsAllowed = false, bool MovedFigureIsWhite = false)
@@ -43,6 +52,10 @@ namespace ChessEngine.Data
 			TakenFigureCol = Constants.OffBoard;
 			WasKingSideCastle = false;
 			WasQueenSideCastle = false;
+			FromRow = Constants.OffBoard;
+			FromCol = Constants.OffBoard;
+			ToRow = Constants.OffBoard;
+			ToCol = Constants.OffBoard;
 		}
 
 		public ChessMoveInfo(bool IsAllowed = false, bool MovedFigureIsWhite = false, int TakenFigureRow = Constants.OffBoard, int TakenFigureCol = Constants.OffBoard)
@@ -56,12 +69,17 @@ namespace ChessEngine.Data
 			this.TakenFigureCol = TakenFigureCol;
 			WasKingSideCastle = false;
 			WasQueenSideCastle = false;
+			FromRow = Constants.OffBoard;
+			FromCol = Constants.OffBoard;
+			ToRow = Constants.OffBoard;
+			ToCol = Constants.OffBoard;
 		}
 
 		public ChessMoveInfo(bool IsAllowed = false, bool MovedFigureIsWhite = false, bool EnemyKingIsCheck = false,
 			int TakenFigureRow = Constants.OffBoard, int TakenFigureCol = Constants.OffBoard,
 			bool IsPromotion = false, int EnPasRow = Constants.OffBoard, int EnPasCol = Constants.OffBoard,
-			bool WasKingSideCastle = false, bool WasQueenSideCastle = false)
+			bool WasKingSideCastle = false, bool WasQueenSideCastle = false,
+			int FromRow = Constants.OffBoard, int FromCol = Constants.OffBoard, int ToRow = Constants.OffBoard, int ToCol = Constants.OffBoard)
 		{
 			this.IsAllowed = IsAllowed;
 			this.MovedFigureIsWhite = MovedFigureIsWhite;
@@ -73,6 +91,10 @@ namespace ChessEngine.Data
 			this.EnPasCol = EnPasCol;
 			this.WasKingSideCastle = WasKingSideCastle;
 			this.WasQueenSideCastle = WasQueenSideCastle;
+			this.FromRow = FromRow;
+			this.FromCol = FromCol;
+			this.ToRow = ToRow;
+			this.ToCol = ToCol;
 		}
 	}
 }

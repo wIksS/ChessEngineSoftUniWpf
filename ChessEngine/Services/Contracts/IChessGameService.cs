@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace ChessEngine.Services.Contracts
 {
-    public interface IBoardGeneratorService
-    {
-        Square[,] Generate();
-        Square[,] Generate_from_fen(string fen);
-		string Generate_fen_from_board(Square[,] board);
+	public interface IChessGameService
+	{
+		bool Fifty_move_rule();
+		bool Threefold_repetition();
+
+		bool Process_move(Square[,] Board, ChessMoveInfo MoveInfo);
 	}
 }

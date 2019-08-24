@@ -252,6 +252,10 @@ namespace ChessEngine.Services
 			bool IsEnemyKingCheck = Check_for_check(!from.IsWhite, board, Generate_attack_board(board, new Knight(to.Row, to.Col, from.IsWhite, "")));
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(true, from.IsWhite);
+			MoveInfo.FromRow = from.Row;
+			MoveInfo.FromCol = from.Col;
+			MoveInfo.ToRow = to.Row;
+			MoveInfo.ToCol = to.Col;
 
 			if (to.Name != "Empty")
 			{
@@ -305,6 +309,10 @@ namespace ChessEngine.Services
 			bool IsEnemyKingCheck = Check_for_check(!from.IsWhite, board, Generate_attack_board(board, new Pawn(to.Row, to.Col, from.IsWhite, "")));
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false,from.IsWhite);
+			MoveInfo.FromRow = from.Row;
+			MoveInfo.FromCol = from.Col;
+			MoveInfo.ToRow = to.Row;
+			MoveInfo.ToCol = to.Col;
 
 			if (to.Name != "Empty")
 			{
@@ -334,13 +342,13 @@ namespace ChessEngine.Services
 							MoveInfo.EnemyKingIsCheck = IsEnemyKingCheck;
 							return MoveInfo;
 						}
-						else if (board[to.Row, to.Col].EnPasPossible)
+						else if (board[to.Row, to.Col].EnPasPossible && board[to.Row, to.Col].EnPasIsWhite == from.IsWhite)
 						{
 							MoveInfo.IsAllowed = true;
 							MoveInfo.IsPromotion = IsPromotion;
 							MoveInfo.EnemyKingIsCheck = IsEnemyKingCheck;
-							MoveInfo.TakenFigureRow = to.Row;
-							MoveInfo.TakenFigureCol = to.Col-1;
+							MoveInfo.TakenFigureRow = to.Row + 1;
+							MoveInfo.TakenFigureCol = to.Col;
 							return MoveInfo;
 						}
 					}
@@ -357,7 +365,7 @@ namespace ChessEngine.Services
 						MoveInfo.IsPromotion = IsPromotion;
 						MoveInfo.EnemyKingIsCheck = IsEnemyKingCheck;
 						MoveInfo.EnPasRow = from.Row - 1;
-						MoveInfo.EnPasRow = from.Col;
+						MoveInfo.EnPasCol = from.Col;
 
 						return MoveInfo; // There is a possible En Passant
 					}
@@ -386,13 +394,13 @@ namespace ChessEngine.Services
 							return MoveInfo;
 						}
 						//Check if the to square is En Passant Square
-						else if (board[to.Row, to.Col].EnPasPossible)
+						else if (board[to.Row, to.Col].EnPasPossible && board[to.Row, to.Col].EnPasIsWhite == from.IsWhite)
 						{
 							MoveInfo.IsAllowed = true;
 							MoveInfo.IsPromotion = IsPromotion;
 							MoveInfo.EnemyKingIsCheck = IsEnemyKingCheck;
-							MoveInfo.TakenFigureRow = to.Row;
-							MoveInfo.TakenFigureCol = to.Col + 1;
+							MoveInfo.TakenFigureRow = to.Row - 1;
+							MoveInfo.TakenFigureCol = to.Col;
 							return MoveInfo;
 						}
 					}
@@ -408,7 +416,7 @@ namespace ChessEngine.Services
 						MoveInfo.IsPromotion = IsPromotion;
 						MoveInfo.EnemyKingIsCheck = IsEnemyKingCheck;
 						MoveInfo.EnPasRow = from.Row + 1;
-						MoveInfo.EnPasRow = from.Col;
+						MoveInfo.EnPasCol = from.Col;
 						return MoveInfo; // There is a possible En Passant
 					}
 				}
@@ -442,6 +450,10 @@ namespace ChessEngine.Services
 			bool IsEnemyKingCheck = Check_for_check(!from.IsWhite, board, Generate_attack_board(board,new Rook(to.Row,to.Col,from.IsWhite,"")));
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false, from.IsWhite);
+			MoveInfo.FromRow = from.Row;
+			MoveInfo.FromCol = from.Col;
+			MoveInfo.ToRow = to.Row;
+			MoveInfo.ToCol = to.Col;
 
 			if (to.Name != "Empty")
 			{
@@ -499,6 +511,10 @@ namespace ChessEngine.Services
 			bool IsEnemyKingCheck = Check_for_check(!from.IsWhite, board, Generate_attack_board(board, new Bishop(to.Row, to.Col, from.IsWhite, "")));
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false, from.IsWhite);
+			MoveInfo.FromRow = from.Row;
+			MoveInfo.FromCol = from.Col;
+			MoveInfo.ToRow = to.Row;
+			MoveInfo.ToCol = to.Col;
 
 			if (to.Name != "Empty")
 			{
@@ -564,6 +580,10 @@ namespace ChessEngine.Services
 			}
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(true, from.IsWhite);
+			MoveInfo.FromRow = from.Row;
+			MoveInfo.FromCol = from.Col;
+			MoveInfo.ToRow = to.Row;
+			MoveInfo.ToCol = to.Col;
 
 			if (to.Name != "Empty")
 			{
@@ -649,6 +669,10 @@ namespace ChessEngine.Services
 			bool IsEnemyKingCheck = Check_for_check(!from.IsWhite, board, Generate_attack_board(board, new Queen(to.Row, to.Col, from.IsWhite, "")));
 
 			ChessMoveInfo MoveInfo = new ChessMoveInfo(false, from.IsWhite);
+			MoveInfo.FromRow = from.Row;
+			MoveInfo.FromCol = from.Col;
+			MoveInfo.ToRow = to.Row;
+			MoveInfo.ToCol = to.Col;
 
 			if (to.Name != "Empty")
 			{
