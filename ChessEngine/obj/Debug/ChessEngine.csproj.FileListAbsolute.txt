@@ -90,3 +90,36 @@ D:\Prog\C#\WPF Chess\ChessEngine\obj\Debug\ChessEngine.csproj.Fody.CopyLocal.cac
 D:\Prog\C#\WPF Chess\ChessEngine\obj\Debug\ChessEngine.csproj.CopyComplete
 D:\Prog\C#\WPF Chess\ChessEngine\obj\Debug\ChessEngine.exe
 D:\Prog\C#\WPF Chess\ChessEngine\obj\Debug\ChessEngine.pdb
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.exe.config
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.exe
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.pdb
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\Autofac.dll
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.Data.dll
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\Microsoft.Expression.Interactions.dll
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\System.Windows.Interactivity.dll
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.Data.pdb
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\Autofac.pdb
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\Autofac.xml
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\Microsoft.Expression.Interactions.xml
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\System.Windows.Interactivity.xml
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.csprojAssemblyReference.cache
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\Controls\ChessFigureView.g.cs
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\MainWindow.g.cs
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\Views\ChessGridView.g.cs
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\App.g.cs
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine_MarkupCompile.cache
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine_MarkupCompile.lref
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\Controls\ChessFigureView.baml
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\MainWindow.baml
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\Views\ChessGridView.baml
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.g.resources
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.Properties.Resources.resources
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.csproj.GenerateResource.cache
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.csproj.CoreCompileInputs.cache
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.csproj.Fody.CopyLocal.cache
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.csproj.CopyComplete
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.exe
+D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.pdb
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.Services.dll
+D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.Services.pdb

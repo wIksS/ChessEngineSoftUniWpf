@@ -1,0 +1,9 @@
+D:\Prog\C#\WPF chess new\ChessEngine.Services\bin\Debug\ChessEngine.Services.dll
+D:\Prog\C#\WPF chess new\ChessEngine.Services\bin\Debug\ChessEngine.Services.pdb
+D:\Prog\C#\WPF chess new\ChessEngine.Services\bin\Debug\ChessEngine.Data.dll
+D:\Prog\C#\WPF chess new\ChessEngine.Services\bin\Debug\ChessEngine.Data.pdb
+D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.csprojAssemblyReference.cache
+D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.csproj.CoreCompileInputs.cache
+D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.csproj.CopyComplete
+D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.dll
+D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.pdb

@@ -76,16 +76,6 @@
       <DependentUpon>ChessFigureView.xaml</DependentUpon>
     </Compile>
     <Compile Include="RelayCommand.cs" />
-    <Compile Include="Services\ChessGameService.cs" />
-    <Compile Include="Services\ChessRulesService.cs" />
-    <Compile Include="Services\BoardGeneratorService.cs" />
-    <Compile Include="Services\CkeckmateService.cs" />
-    <Compile Include="Services\Contracts\IBoardGeneratorService.cs" />
-    <Compile Include="Services\Contracts\ICheckmateService.cs" />
-    <Compile Include="Services\Contracts\IChessGameService.cs" />
-    <Compile Include="Services\Contracts\IChessRulesService.cs" />
-    <Compile Include="Services\Contracts\IKingAttackerService.cs" />
-    <Compile Include="Services\KingAttackerService.cs" />
     <Compile Include="ViewModels\ChessGridViewModel.cs" />
     <Compile Include="Views\ChessGridView.xaml.cs">
       <DependentUpon>ChessGridView.xaml</DependentUpon>
@@ -157,6 +147,10 @@
     <ProjectReference Include="..\ChessEngine.Data\ChessEngine.Data.csproj">
       <Project>{1b6a548e-7b91-4a8d-931a-698c47aa6a7e}</Project>
       <Name>ChessEngine.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChessEngine.Services\ChessEngine.Services.csproj">
+      <Project>{a8091427-25df-48e7-849a-3d6af4bd7d03}</Project>
+      <Name>ChessEngine.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

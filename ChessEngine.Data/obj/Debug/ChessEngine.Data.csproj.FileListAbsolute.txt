@@ -17,3 +17,10 @@ D:\Prog\C#\WPF Chess\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.CoreComp
 D:\Prog\C#\WPF Chess\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.Fody.CopyLocal.cache
 D:\Prog\C#\WPF Chess\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
 D:\Prog\C#\WPF Chess\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb
+D:\Prog\C#\WPF chess new\ChessEngine.Data\bin\Debug\ChessEngine.Data.dll
+D:\Prog\C#\WPF chess new\ChessEngine.Data\bin\Debug\ChessEngine.Data.pdb
+D:\Prog\C#\WPF chess new\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.CoreCompileInputs.cache
+D:\Prog\C#\WPF chess new\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.Fody.CopyLocal.cache
+D:\Prog\C#\WPF chess new\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
+D:\Prog\C#\WPF chess new\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb
+D:\Prog\C#\WPF chess new\ChessEngine.Data\obj\Debug\ChessEngine.Data.csprojAssemblyReference.cache
