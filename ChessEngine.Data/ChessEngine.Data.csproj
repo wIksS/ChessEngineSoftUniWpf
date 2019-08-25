@@ -54,12 +54,14 @@
     <Compile Include="ChessFigure.cs" />
     <Compile Include="ChessMoveInfo.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\SideType.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Queen.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Empty.cs" />
     <Compile Include="Pawn.cs" />
     <Compile Include="Rook.cs" />
+    <Compile Include="Side.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

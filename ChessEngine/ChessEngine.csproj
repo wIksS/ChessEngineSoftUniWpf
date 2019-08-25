@@ -79,9 +79,13 @@
     <Compile Include="Services\ChessGameService.cs" />
     <Compile Include="Services\ChessRulesService.cs" />
     <Compile Include="Services\BoardGeneratorService.cs" />
+    <Compile Include="Services\CkeckmateService.cs" />
     <Compile Include="Services\Contracts\IBoardGeneratorService.cs" />
+    <Compile Include="Services\Contracts\ICheckmateService.cs" />
     <Compile Include="Services\Contracts\IChessGameService.cs" />
     <Compile Include="Services\Contracts\IChessRulesService.cs" />
+    <Compile Include="Services\Contracts\IKingAttackerService.cs" />
+    <Compile Include="Services\KingAttackerService.cs" />
     <Compile Include="ViewModels\ChessGridViewModel.cs" />
     <Compile Include="Views\ChessGridView.xaml.cs">
       <DependentUpon>ChessGridView.xaml</DependentUpon>
