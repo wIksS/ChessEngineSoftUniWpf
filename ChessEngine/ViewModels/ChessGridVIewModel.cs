@@ -12,10 +12,11 @@ using System.Windows.Input;
 
 namespace ChessEngine.ViewModels
 {
-    public class ChessGridViewModel
+    public class ChessGridViewModel : BasePropertyChanged
     {
+		private GameMode MODE;
+
         private readonly IBoardGeneratorService generatorService;
-        private readonly IChessRulesService rulesService;
         private readonly IChessGameService GameService;
 
 		private ICommand initCommand;
@@ -26,17 +27,22 @@ namespace ChessEngine.ViewModels
 		private ChessFigure selectedFigure;
         private Square[,] board;
 
+		public bool WhiteToMove { get; set; }
+
         public ChessGridViewModel(IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game)
         {
+			this.MODE |= GameMode.ROTATION;
 			this.GameService = game;
-            this.generatorService = generator;
-            this.rulesService = rules;
+			this.WhiteToMove = GameService.White_to_move();
+			this.generatorService = generator;
             this.ChessGrid = new ObservableCollection<Square>();
-        }
+            this.ReverseChessGrid = new ObservableCollection<Square>();
+		}
 
         public ObservableCollection<Square> ChessGrid { get; set; }
+        public ObservableCollection<Square> ReverseChessGrid { get; set; }
 
-        public ICommand InitCommand
+		public ICommand InitCommand
         {
             get
             {
@@ -99,7 +105,7 @@ namespace ChessEngine.ViewModels
 		public void DragFigureEnter(ChessFigure figure)
 		{
 			dynamic dynamicFigure = selectedFigure;
-			ChessMoveInfo MoveInfo = rulesService.Check(board, dynamicFigure, figure);
+			ChessMoveInfo MoveInfo = GameService.Check(board, dynamicFigure, figure);
 			if (MoveInfo)
 			{
 				board[figure.Row, figure.Col].CursorOver = true;
@@ -119,9 +125,13 @@ namespace ChessEngine.ViewModels
             {
                 ChessGrid.Add(square);
             }
-        }
+			if ((MODE & GameMode.ROTATION) == GameMode.ROTATION)
+				for (int i = ChessGrid.Count - 1; i >= 0; i--) ReverseChessGrid.Add(ChessGrid[i]);
+			else
+				ReverseChessGrid = ChessGrid;
+		}
 
-        public void DragFigureInit(ChessFigure figure)
+		public void DragFigureInit(ChessFigure figure)
         {
             selectedFigure = figure;
         }
@@ -132,12 +142,17 @@ namespace ChessEngine.ViewModels
 
 			dynamic dynamicFigure = selectedFigure;
 
-			ChessMoveInfo MoveInfo = rulesService.Check(board, dynamicFigure, figure);
+			ChessMoveInfo MoveInfo = GameService.Check(board, dynamicFigure, figure);
 
 			if (GameService.Process_move(board,MoveInfo))
 			{
 				//TODO: implement pawn promotion
 			}
+
+			this.WhiteToMove = GameService.White_to_move();
+
+			GameService.Check_for_end_condition(board, false);
+			GameService.Check_for_end_condition(board, true);
 		}
 
     }

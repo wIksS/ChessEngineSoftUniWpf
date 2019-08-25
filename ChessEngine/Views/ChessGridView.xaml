@@ -10,16 +10,43 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChessGridView">
 
+
+    <Page.Resources>
+        <Style TargetType="Grid" x:Key="RotatingGrid">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="0"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WhiteToMove}" Value="False">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <RotateTransform Angle="180"/>
+                        </Setter.Value>
+                        
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ItemsControl">
+            <Setter Property="ItemsSource" Value="{Binding ChessGrid}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding WhiteToMove}" Value="False">
+                    <Setter Property="ItemsSource" Value="{Binding ReverseChessGrid}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding InitCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
-    <Grid>
-        <ItemsControl Margin="10"
-              ItemsSource="{Binding ChessGrid}" Name="chessGrid">
-  
+
+    <Grid >
+        <ItemsControl Margin="10" Name="chessGrid">
             <ItemsControl.Template>
                 <ControlTemplate TargetType="ItemsControl">
                         <ItemsPresenter/>

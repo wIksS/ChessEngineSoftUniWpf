@@ -23,14 +23,14 @@ namespace ChessEngine.Services
 			return Sq.Figure.Name == "Empty";
 		}
 
-		private bool Check_for_check(bool KingIsWhite, Square[,] Board)
+		public bool Check_for_check(bool KingIsWhite, Square[,] Board)
 		{
 			bool[,] AttackBoard = Generate_attack_board(Board, !KingIsWhite); // Generate the attack board for the opposite color
 
 			return Check_for_check(KingIsWhite, Board, AttackBoard);
 		}
 
-		private bool Check_for_check(bool KingIsWhite, Square[,] Board, bool[,] AttackBoard)
+		public bool Check_for_check(bool KingIsWhite, Square[,] Board, bool[,] AttackBoard)
 		{
 			
 			foreach (var sq in Board)
@@ -44,7 +44,7 @@ namespace ChessEngine.Services
 			return false;
 		}
 
-		private bool[,] Generate_attack_board(Square[,] Board, bool IsWhite)
+		public bool[,] Generate_attack_board(Square[,] Board, bool IsWhite)
 		{
 			bool[,] AttackBoard = new bool[Constants.BoardRows, Constants.BoardCols];
 
@@ -66,7 +66,7 @@ namespace ChessEngine.Services
 			return AttackBoard;
 		}
 
-		private bool[,] Generate_attack_board(Square[,] Board, ChessFigure fig)
+		public bool[,] Generate_attack_board(Square[,] Board, ChessFigure fig)
 		{
 			Debug.Assert(fig.Name != "Empty", "Trying to generate attack field for a figure of type Empty");
 
@@ -206,7 +206,7 @@ namespace ChessEngine.Services
 			return AttackBoard;
 		}
 
-		private bool Check_if_king_is_check_after(Square[,] board, ChessFigure from, ChessFigure to)
+		public bool Check_if_king_is_check_after(Square[,] board, ChessFigure from, ChessFigure to)
 		{
 			int tempCol = from.Col;
 			int tempRow = from.Row;

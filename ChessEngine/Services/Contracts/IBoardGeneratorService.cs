@@ -11,6 +11,5 @@ namespace ChessEngine.Services.Contracts
     {
         Square[,] Generate();
         Square[,] Generate_from_fen(string fen);
-		string Generate_fen_from_board(Square[,] board);
 	}
 }

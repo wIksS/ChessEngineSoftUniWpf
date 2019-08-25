@@ -52,8 +52,10 @@
     <Compile Include="BasePropertyChanged.cs" />
     <Compile Include="Bishop.cs" />
     <Compile Include="ChessFigure.cs" />
+    <Compile Include="ChessGameInfo.cs" />
     <Compile Include="ChessMoveInfo.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="GameMode.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Queen.cs" />
     <Compile Include="Knight.cs" />
