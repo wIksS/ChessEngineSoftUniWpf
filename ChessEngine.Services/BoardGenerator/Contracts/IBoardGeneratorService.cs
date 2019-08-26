@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessEngine.Services.Contracts
+namespace ChessEngine.Services.BoardGenerator.Contracts
 {
     public interface IBoardGeneratorService
     {

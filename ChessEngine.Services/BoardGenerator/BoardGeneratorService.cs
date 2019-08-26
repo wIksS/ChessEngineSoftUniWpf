@@ -1,9 +1,9 @@
 ﻿using ChessEngine.Common;
 using ChessEngine.Data;
-using ChessEngine.Services.Contracts;
+using ChessEngine.Services.BoardGenerator.Contracts;
 using System.Diagnostics;
 
-namespace ChessEngine.Services
+namespace ChessEngine.Services.BoardGenerator
 {
     public class BoardGeneratorService : IBoardGeneratorService
     {

@@ -1,15 +1,11 @@
-﻿using ChessEngine.Common;
-using ChessEngine.Data;
-using ChessEngine.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChessEngine.Services
+﻿namespace ChessEngine.Services.Engine
 {
+    using System;
+    using System.Diagnostics;
+    using ChessEngine.Common;
+    using ChessEngine.Data;
+    using ChessEngine.Services.Engine.Contracts;
+    
     public class ChessRulesService : IChessRulesService
     {
 		private bool Check_for_color_match(ChessFigure A, ChessFigure B)

@@ -1,10 +1,11 @@
-﻿namespace ChessEngine.Services
+﻿namespace ChessEngine.Services.Checkmate
 {
     using System;
     using System.Collections.Generic;
     using ChessEngine.Common;
     using ChessEngine.Data;
-    using ChessEngine.Services.Contracts;
+    using ChessEngine.Services.Checkmate.Contracts;
+    using ChessEngine.Services.Engine.Contracts;
 
     public class CheckmateService : ICheckmateService
     {

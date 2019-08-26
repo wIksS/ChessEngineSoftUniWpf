@@ -1,15 +1,11 @@
-﻿using ChessEngine.Common;
-using ChessEngine.Data;
-using ChessEngine.Services.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChessEngine.Services
+﻿namespace ChessEngine.Services.Engine
 {
-	public class ChessGameService : IChessGameService
+    using System.Collections.Generic;
+    using ChessEngine.Common;
+    using ChessEngine.Data;
+    using ChessEngine.Services.Engine.Contracts;
+
+    public class ChessGameService : IChessGameService
 	{
 		int FiftyMoveCounter { get; set; }
 		Dictionary<string, int> FenPositionCounter { get; set; }

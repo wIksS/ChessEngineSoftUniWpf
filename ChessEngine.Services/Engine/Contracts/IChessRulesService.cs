@@ -1,6 +1,6 @@
 ﻿using ChessEngine.Data;
 
-namespace ChessEngine.Services.Contracts
+namespace ChessEngine.Services.Engine.Contracts
 {
     public interface IChessRulesService
     {

@@ -1,6 +1,6 @@
 ﻿using ChessEngine.Data;
 
-namespace ChessEngine.Services.Contracts
+namespace ChessEngine.Services.Checkmate.Contracts
 {
     public interface ICheckmateService
     {

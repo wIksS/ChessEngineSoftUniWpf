@@ -3,9 +3,10 @@
     using NUnit.Framework;
     using ChessEngine.Common;
     using ChessEngine.Data;
-    using ChessEngine.Services;
     using ChessEngine.Services.BoardGenerator;
-    
+    using ChessEngine.Services.Checkmate;
+    using ChessEngine.Services.Engine;
+
     public class CheckmateTester
     {
         private Square[,] board;

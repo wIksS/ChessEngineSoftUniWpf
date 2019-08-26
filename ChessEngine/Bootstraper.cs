@@ -1,18 +1,14 @@
-﻿using Autofac;
-using ChessEngine.Services;
-using ChessEngine.Services.BoardGenerator;
-using ChessEngine.Services.BoardGenerator.Contracts;
-using ChessEngine.Services.Contracts;
-using ChessEngine.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChessEngine
+﻿namespace ChessEngine
 {
+    using Autofac;
+    using ChessEngine.Services.BoardGenerator;
+    using ChessEngine.Services.BoardGenerator.Contracts;
+    using ChessEngine.Services.Checkmate;
+    using ChessEngine.Services.Checkmate.Contracts;
+    using ChessEngine.Services.Engine;
+    using ChessEngine.Services.Engine.Contracts;
+    using System.Linq;
+    using System.Reflection;
     public static class Bootstraper
     {
         public static IContainer Container { get; set; }

@@ -1,10 +1,11 @@
-﻿using ChessEngine.Data;
-using ChessEngine.Services.Contracts;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-
-namespace ChessEngine.ViewModels
+﻿namespace ChessEngine.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
+    using ChessEngine.Data;
+    using ChessEngine.Services.BoardGenerator.Contracts;
+    using ChessEngine.Services.Engine.Contracts;
+    
     public class ChessGridViewModel
     {
         private readonly IBoardGeneratorService generatorService;
