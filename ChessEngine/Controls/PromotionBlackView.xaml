@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="ChessEngine.Controls.PromotionBlackView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChessEngine.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="87.5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Click="QueenClick">
+            <Image Source="/Images/blackqueen.png" />
+        </Button>
+        <Button Grid.Row="1" Click="RookClick">
+            <Image Source="/Images/blackrook.png" />
+        </Button>
+        <Button Grid.Row="2" Click="BishopClick">
+            <Image Source="/Images/blackbishop.png" />
+        </Button>
+        <Button Grid.Row="3" Click="KnightClick">
+            <Image Source="/Images/blackknight.png" />
+        </Button>
+    </Grid>
+</UserControl>

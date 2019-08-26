@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ChessEngine.Services
 {
@@ -170,5 +171,82 @@ namespace ChessEngine.Services
 
             return figure;
         }
-    }
+
+		public Square[,] Generate_from_matrix(string matrix)
+		{
+			Square[,] Board = Generate_from_matrix(matrix.Split('\n'));
+			return Board;
+		}
+
+		public Square[,] Generate_from_matrix(string[] matrix)
+		{
+			Square[,] Board = new Square[matrix.GetLength(0), matrix[0].Length];
+
+			for(int i = 0; i < matrix.GetLength(0); i++)
+			{
+				if (matrix[i].Length != matrix[0].Length)
+				{
+					MessageBox.Show("The matrix which was passed is not a rectangle. Returning default board");
+					return Generate_from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+				}
+			}
+			
+			for (int i = 0; i < matrix.GetLength(0); i++)
+			{
+				for(int j = 0; j < matrix[i].Length; j++)
+				{
+					char c = matrix[i][j];
+					switch (c)
+					{
+						case 'p':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Pawn(i, j, false, "/Images/blackpawn.png"));
+							break;
+						case 'r':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Rook(i, j, false, "/Images/blackrook.png"));
+							break;
+						case 'n':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Knight(i, j, false, "/Images/blackKnight.png"));
+							break;
+						case 'b':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Bishop(i, j, false, "/Images/blackbishop.png"));
+							break;
+						case 'q':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Queen(i, j, false, "/Images/blackqueen.png"));
+							break;
+						case 'k':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new King(i, j, false, "/Images/blackking.png"));
+							break;
+
+						case 'P':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Pawn(i, j, true, "/Images/whitepawn.png"));
+							break;
+						case 'R':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Rook(i, j, true, "/Images/whiterook.png"));
+							break;
+						case 'N':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Knight(i, j, true, "/Images/whiteknight.png"));
+							break;
+						case 'B':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Bishop(i, j, true, "/Images/whitebishop.png"));
+							break;
+						case 'Q':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Queen(i, j, true, "/Images/whitequeen.png"));
+							break;
+						case 'K':
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new King(i, j, true, "/Images/whiteking.png"));
+							break;
+						case ' ':
+							j--;
+							break;
+						default:
+							Board[i, j] = new Square(i, j, (i + j) % 2 == 0, new Empty(i, j));
+							break;
+					}
+				}
+			}
+			
+
+			return Board;
+		}
+	}
 }

@@ -9,6 +9,8 @@ namespace ChessEngine.Data
 {
 	public class ChessGameInfo
 	{
+		public GameSetting SETTINGS { get; set; }
+
 		public bool WhiteToMove { get; set; }
 		public bool WKingSideCastle { get; set; }
 		public bool BKingSideCastle { get; set; }
@@ -18,12 +20,11 @@ namespace ChessEngine.Data
 		public int EnPasCol { get; set; }
 		public int FiftyRuleCounter { get; set; }
 		public int FullMoveCounter { get; set; }
-
 		public List<ChessMoveInfo> History { get; set; }
 
 		public ChessGameInfo()
 		{
-			List<ChessMoveInfo> History = new List<ChessMoveInfo>();
+			History = new List<ChessMoveInfo>();
 			WhiteToMove = true;
 			WKingSideCastle = true;
 			BKingSideCastle = true;

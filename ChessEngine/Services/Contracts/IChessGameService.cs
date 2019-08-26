@@ -18,6 +18,10 @@ namespace ChessEngine.Services.Contracts
 
 		bool Process_move(Square[,] Board, ChessMoveInfo MoveInfo);
 
+		GameSetting EnableGameSetting(GameSetting M);
+		GameSetting DisableGameSetting(GameSetting M);
+		GameSetting GetGameSetting();
+
 		bool White_to_move();
 	}
 }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace ChessEngine.Data
 {
-	public enum GameMode
+	public enum RenderMode
 	{
-		DEBUG = (1<<0),
-		WHITEBLACK = (1<<1),
-		ROTATION = (1<<2)
+		ROTATION = (1<<0)
 	}
 }

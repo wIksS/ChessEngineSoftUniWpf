@@ -59,3 +59,7 @@ C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\Ches
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.exe
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.pdb
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.csproj.Fody.CopyLocal.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Controls\PromotionWhiteView.g.cs
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Controls\PromotionWhiteView.baml
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Controls\PromotionBlackView.g.cs
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Controls\PromotionBlackView.baml

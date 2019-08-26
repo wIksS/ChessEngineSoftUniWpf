@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -75,6 +76,12 @@
     <Compile Include="Controls\ChessFigureView.xaml.cs">
       <DependentUpon>ChessFigureView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PromotionBlackView.xaml.cs">
+      <DependentUpon>PromotionBlackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PromotionWhiteView.xaml.cs">
+      <DependentUpon>PromotionWhiteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Services\BoardParserService.cs" />
     <Compile Include="Services\ChessGameService.cs" />
@@ -89,6 +96,14 @@
       <DependentUpon>ChessGridView.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\ChessFigureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PromotionBlackView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PromotionWhiteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

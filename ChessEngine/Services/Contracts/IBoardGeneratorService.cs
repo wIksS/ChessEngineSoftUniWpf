@@ -11,5 +11,7 @@ namespace ChessEngine.Services.Contracts
     {
         Square[,] Generate();
         Square[,] Generate_from_fen(string fen);
+		Square[,] Generate_from_matrix(string matrix);
+		Square[,] Generate_from_matrix(string[] matrix);
 	}
 }

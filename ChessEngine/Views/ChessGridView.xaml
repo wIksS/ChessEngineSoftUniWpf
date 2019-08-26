@@ -29,7 +29,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style TargetType="ItemsControl">
+        <Style TargetType="ItemsControl" x:Key="ChessGridStyle">
             <Setter Property="ItemsSource" Value="{Binding ChessGrid}"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding WhiteToMove}" Value="False">
@@ -46,16 +46,11 @@
     </i:Interaction.Triggers>
 
     <Grid >
-        <ItemsControl Margin="10" Name="chessGrid">
-            <ItemsControl.Template>
-                <ControlTemplate TargetType="ItemsControl">
-                        <ItemsPresenter/>
-                </ControlTemplate>
-            </ItemsControl.Template>
-
+       
+        <ItemsControl Margin="10" Name="chessGrid" Style="{StaticResource ChessGridStyle}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Width="700" Height="700" Rows="8" Columns="8" />
+                    <UniformGrid Rows="8" Columns="8" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
@@ -107,5 +102,79 @@
             </ItemsControl.ItemTemplate>
 
         </ItemsControl>
+
+        <Rectangle Opacity="0.2" Fill="Black">
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding LockBoard}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
+        </Rectangle>
+        
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <ItemsControl ItemsSource="{Binding WhitePromotionFigures}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" Columns="8"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <controls:PromotionWhiteView Figure="{Binding Figure}" Source="{Binding PromotionSource}">
+                                <controls:PromotionWhiteView.Style>
+                                    <Style TargetType="controls:PromotionWhiteView">
+                                        <Setter Property="Visibility" Value="Hidden"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding IsVisible}"
+                                                Value="True">
+                                                <Setter Property="Visibility" Value="Visible"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </controls:PromotionWhiteView.Style>
+                            </controls:PromotionWhiteView>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl ItemsSource="{Binding BlackPromotionFigures}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" Columns="8"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <controls:PromotionBlackView Figure="{Binding Figure}" Source="{Binding PromotionSource}">
+                                <controls:PromotionBlackView.Style>
+                                    <Style TargetType="controls:PromotionBlackView">
+                                        <Setter Property="Visibility" Value="Hidden"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding IsVisible}"
+                                                Value="True">
+                                                <Setter Property="Visibility" Value="Visible"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </controls:PromotionBlackView.Style>
+                            </controls:PromotionBlackView>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
     </Grid>
 </Page>

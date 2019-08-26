@@ -14,7 +14,19 @@ namespace ChessEngine.Services
 {
 	public class ChessGameService : IChessGameService
 	{
-		GameMode MODE;
+		public GameSetting EnableGameSetting(GameSetting M)
+		{
+			return (GameInfo.SETTINGS |= M);
+		}
+		public GameSetting DisableGameSetting(GameSetting M)
+		{
+			return (GameInfo.SETTINGS &= (~M));
+		}
+		public GameSetting GetGameSetting()
+		{
+			return GameInfo.SETTINGS;
+		}
+
 		ChessGameInfo GameInfo;
 		ChessRulesService RuleService { get; set; }
 		IBoardParserService BoardParser { get; set; }
@@ -23,8 +35,6 @@ namespace ChessEngine.Services
 
 		public ChessGameService()
 		{
-			MODE |= GameMode.WHITEBLACK;
-
 			GameInfo = new ChessGameInfo();
 			FiftyMoveCounter = 0;
 			FenPositionCounter = new Dictionary<string, int>();
@@ -175,19 +185,19 @@ namespace ChessEngine.Services
 
 		public EndCondition Check_for_end_condition(Square[,] Board, bool IsWhite)
 		{
-			if (Is_checkmate(Board, IsWhite))
+			if ((GameInfo.SETTINGS & GameSetting.CHECKMATE) == GameSetting.CHECKMATE && Is_checkmate(Board, IsWhite))
 			{
 				MessageBox.Show("Game ended by checkmate.");
 				return EndCondition.Checkmate;
-			}else if (Is_stalemate(Board, IsWhite))
+			}else if ((GameInfo.SETTINGS & GameSetting.STALEMATE) == GameSetting.STALEMATE && Is_stalemate(Board, IsWhite))
 			{
 				MessageBox.Show("Game ended by stalemate.");
 				return EndCondition.Stalemate;
-			}else if (Fifty_move_rule())
+			}else if ((GameInfo.SETTINGS & GameSetting.FIFTYRULE) == GameSetting.FIFTYRULE && Fifty_move_rule())
 			{
 				MessageBox.Show("Game ended by Fifty move rule.");
 				return EndCondition.FiftyRule;
-			}else if (Threefold_repetition())
+			}else if ((GameInfo.SETTINGS & GameSetting.THREEFOLDRULE) == GameSetting.THREEFOLDRULE && Threefold_repetition())
 			{
 				MessageBox.Show("Game ended by Threefold repetition.");
 				return EndCondition.Threefold;
@@ -197,7 +207,7 @@ namespace ChessEngine.Services
 
 		public ChessMoveInfo Check(Square[,] board, ChessFigure from, ChessFigure to)
 		{
-			if((MODE & GameMode.WHITEBLACK) == GameMode.WHITEBLACK)
+			if((GameInfo.SETTINGS & GameSetting.WHITEBLACK) == GameSetting.WHITEBLACK)
 				if (from.IsWhite != GameInfo.WhiteToMove) return new ChessMoveInfo(false);
 
 			dynamic dFrom = from;
@@ -291,11 +301,20 @@ namespace ChessEngine.Services
 				Board[MoveInfo.EnPasRow, MoveInfo.EnPasCol].EnPasIsWhite = !to.Figure.IsWhite;
 			}
 
+			//Check if move was promotion and if AUTOPROMOTION is enabled
+			if (MoveInfo.IsPromotion && (GameInfo.SETTINGS & GameSetting.AUTOPROMOTION) == GameSetting.AUTOPROMOTION)
+			{
+				Board[to.Row, to.Col].Figure = new Queen(to.Row, to.Col, MoveInfo.MovedFigureIsWhite, (MoveInfo.MovedFigureIsWhite ? "/Images/whitequeen.png" : "/Images/blackqueen.png"));
+			}
+
 #if QUICKFEN_THREEFOLD
 			string currFen = BoardParser.Generate_simple_fen_from_board(Board);
 			if (FenPositionCounter.ContainsKey(currFen)) FenPositionCounter[currFen] += 1;
 			else FenPositionCounter.Add(currFen, 1);
 #endif
+
+			GameInfo.History.Add(MoveInfo);
+
 			return true;
 		}
 
