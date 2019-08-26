@@ -55,7 +55,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckmateTester.cs" />
+    <Compile Include="CheckmateTests\CheckmateTester.cs" />
+    <Compile Include="CheckmateTests\NoCkeckmateTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,23 +5,16 @@
     using ChessEngine.Common;
     using ChessEngine.Data;
     using ChessEngine.Services.Contracts;
-    
+
     public class CheckmateService : ICheckmateService
     {
         //private field of IChessRulesService type is used for
         //getting possible moves
         private readonly IChessRulesService rulesService;
 
-
-        //private field of IKingAttackerService type is used for
-        //checking is a figure attacks the king
-        private readonly IKingAttackerService kingAttackerService;
-
-        public CheckmateService(IChessRulesService rulesService,
-                                IKingAttackerService kingAttackerService)
+        public CheckmateService(IChessRulesService rulesService)
         {
             this.rulesService = rulesService;
-            this.kingAttackerService = kingAttackerService;
         }
 
         //the class API
@@ -52,15 +45,177 @@
                 return false;
             }
 
-            bool canAttackerBeBlocked = CheckIfAttackerCanBeBlocked(board, attacker);
-            
+            bool canAttackerBeBlocked = CheckIfAttackerCanBeBlocked(board, attackedKing, attacker);
+
 
             return true;
         }
 
-        private bool CheckIfAttackerCanBeBlocked(Square[,] board, ChessFigure attacker)
+        private bool CheckIfAttackerCanBeBlocked(Square[,] board, King attackedKing, ChessFigure attacker)
         {
-            throw new NotImplementedException();
+            bool canBeBlocked = false;
+            if (attacker.Name == Constants.PawnName
+                || attacker.Name == Constants.KnightName)
+            {
+                return canBeBlocked;
+            }
+
+            List<Square> attackingPath = GetAttakingPath(board, attackedKing, attacker);
+
+            if (attackingPath.Count == 0)
+            {
+                return canBeBlocked;
+            }
+
+            canBeBlocked = CanAttackerBeBlocked(board, attackingPath, attackedKing);
+
+            return canBeBlocked;
+        }
+
+        private bool CanAttackerBeBlocked(Square[,] board, List<Square> attackingPath, King attackedKing)
+        {
+            bool canBeBlocked = false;
+
+            foreach (var boardSquare in board)
+            {
+                if (boardSquare.Figure.Name != Constants.EmptySquare)
+                {
+                    if (boardSquare.Figure.IsWhite == attackedKing.IsWhite && boardSquare.Figure.Name != Constants.KingName)
+                    {
+                        foreach (var attackingPathSquare in attackingPath)
+                        {
+                            if (rulesService.Check(board, boardSquare.Figure, attackingPathSquare.Figure))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return canBeBlocked;
+        }
+
+        private List<Square> GetAttakingPath(Square[,] board, King attackedKing, ChessFigure attacker)
+        {
+            List<Square> path = new List<Square>();
+            if (attacker is Rook rook)
+            {
+                path = GetRookPath(board, attackedKing, attacker);
+            }
+            else if (attacker is Bishop bishop)
+            {
+                path = GetBishopPath(board, attackedKing, attacker);
+            }
+            else if (attacker is Queen queen)
+            {
+                path = GetQueenPath(board, attackedKing, attacker);
+            }
+            else
+            {
+                throw new ArgumentException("Wrong attacking figure!");
+            }
+
+            return path;
+        }
+
+        private List<Square> GetQueenPath(Square[,] board, King attackedKing, ChessFigure attacker)
+        {
+            List<Square> path = new List<Square>();
+            if (attacker.Col != attackedKing.Col && attacker.Row != attackedKing.Row)
+            {
+                path = GetBishopPath(board, attackedKing, attacker);
+            }
+            else
+            {
+                path = GetRookPath(board, attackedKing, attacker);
+            }
+            return path;
+        }
+
+        private List<Square> GetBishopPath(Square[,] board, King attackedKing, ChessFigure bishop)
+        {
+            List<Square> path = new List<Square>();
+            //When bishop attacks the king, the always make a square
+            int countOfSquares = Math.Max(attackedKing.Col, bishop.Col) - Math.Min(attackedKing.Col, bishop.Col) - 1;
+            if (countOfSquares < 1)
+            {
+                return path;
+            }
+            int col = -1;
+            int row = -1;
+            if (attackedKing.Col < bishop.Col && attackedKing.Row < bishop.Row)
+            {
+                col = attackedKing.Col + 1;
+                row = attackedKing.Row + 1;
+
+            }
+            else if (attackedKing.Col < bishop.Col && attackedKing.Row > bishop.Row)
+            {
+                col = attackedKing.Col + 1;
+                row = bishop.Row + 1;
+            }
+            else if (attackedKing.Col > bishop.Col && attackedKing.Row > bishop.Row)
+            {
+                col = bishop.Col + 1;
+                row = bishop.Row + 1;
+            }
+            else if (attackedKing.Col > bishop.Col && attackedKing.Row < bishop.Row)
+            {
+                col = bishop.Col + 1;
+                row = attackedKing.Row + 1;
+            }
+            if (col != -1 && row != -1)
+            {
+                for (int i = 0; i < countOfSquares; i++)
+                {
+                    path.Add(board[row++, col++]);
+                }
+            }
+            return path;
+        }
+
+        private List<Square> GetRookPath(Square[,] board, King attackedKing, ChessFigure rook)
+        {
+            List<Square> path = new List<Square>();
+            if (attackedKing.Row == rook.Row)
+            {
+                int row = attackedKing.Row;
+                if (attackedKing.Col < rook.Col)
+                {
+                    for (int i = attackedKing.Col + 1; i < rook.Col; i++)
+                    {
+                        path.Add(board[row, i]);
+                    }
+                }
+                else
+                {
+                    for (int i = rook.Col + 1; i < attackedKing.Col; i++)
+                    {
+                        path.Add(board[row, i]);
+                    }
+                }
+            }
+            else
+            {
+                int col = attackedKing.Col;
+                if (attackedKing.Row < rook.Row)
+                {
+                    for (int i = attackedKing.Row + 1; i < rook.Row; i++)
+                    {
+                        path.Add(board[i, col]);
+                    }
+                }
+                else
+                {
+                    for (int i = rook.Row + 1; i < attackedKing.Row; i++)
+                    {
+                        path.Add(board[i, col]);
+                    }
+                }
+            }
+
+            return path;
         }
 
         private bool CheckIfAttackerCanBeTaken(Square[,] board, ChessFigure attacker)
@@ -72,11 +227,14 @@
                 if (square.Figure.Name != Constants.EmptySquare)
                 {
                     //Skip own figures and the oposite king
-                    if (square.Figure.IsWhite != attacker.IsWhite
-                        && square.Figure.Name != Constants.KingName)
+                    if (square.Figure.IsWhite != attacker.IsWhite)
                     {
                         //Check is one of our pieces can take the attacker
-                        if (rulesService.Check(board, square.Figure, attacker))
+
+                        //Indian style again
+                        dynamic attackerFigure = attacker;
+                        dynamic protectingFigure = square.Figure;
+                        if (rulesService.Check(board, protectingFigure, attackerFigure))
                         {
                             //we return true, attacker could be taken
                             return true;
@@ -105,9 +263,10 @@
                     {
                         //Check if current figure is attacking the king
                         //if it is we add it to the attackers list
-                        if (kingAttackerService.IsKingAttacker(board,
-                                                               attackedKing,
-                                                               square.Figure))
+
+                        //Some indian style
+                        dynamic fig = square.Figure;
+                        if (rulesService.Check(board, fig, (King)attackedKing))
                         {
                             attackers.Add(square.Figure);
                         }
@@ -133,7 +292,7 @@
 
             for (int i = 0; i < maxKingCountOfMoves + 1; i++)
             {
-                if (row >= 0 
+                if (row >= 0
                     && row <= 7
                     && col >= 0
                     && col <= 7)
@@ -143,7 +302,7 @@
                     if (move.IsAllowed)
                         return true;
                 }
-                
+
                 col++;
                 if (col > attackedKing.Col + 1)
                 {

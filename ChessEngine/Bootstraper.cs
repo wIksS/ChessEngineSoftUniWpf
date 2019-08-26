@@ -30,7 +30,6 @@ namespace ChessEngine
             builder.RegisterType<CheckmateService>().As<ICheckmateService>();
             builder.RegisterType<BoardGeneratorService>().As<IBoardGeneratorService>();
             builder.RegisterType<ChessGameService>().As<IChessGameService>();
-            builder.RegisterType<KingAttackerService>().As<IKingAttackerService>();
             builder.RegisterType<EmptyBoardGeneratorService>().As<IEmptyBoardGeneratorService>();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())

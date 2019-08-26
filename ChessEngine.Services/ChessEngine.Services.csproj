@@ -48,8 +48,6 @@
     <Compile Include="BoardGenerator\EmptyBoardGeneratorService.cs" />
     <Compile Include="Checkmate\CheckmateService.cs" />
     <Compile Include="Checkmate\Contracts\ICheckmateService.cs" />
-    <Compile Include="Checkmate\Contracts\IKingAttackerService.cs" />
-    <Compile Include="Checkmate\KingAttackerService.cs" />
     <Compile Include="Engine\ChessGameService.cs" />
     <Compile Include="Engine\ChessRulesService.cs" />
     <Compile Include="Engine\Contracts\IChessGameService.cs" />

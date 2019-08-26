@@ -1,10 +1,11 @@
-﻿namespace ChessEngine.Tests
+﻿namespace ChessEngine.Tests.CheckmateTests
 {
+    using NUnit.Framework;
     using ChessEngine.Common;
     using ChessEngine.Data;
     using ChessEngine.Services;
     using ChessEngine.Services.BoardGenerator;
-    using NUnit.Framework;
+    
     public class CheckmateTester
     {
         private Square[,] board;
@@ -19,19 +20,21 @@
                                                       Constants.BoardCols);
 
             //This is a very stupid way but it works for now
-            this.service = new CheckmateService(new ChessRulesService(),
-                                                new KingAttackerService(new ChessRulesService()));
+            this.service = new CheckmateService(new ChessRulesService());
         }
 
         [Test]
-        public void TestEscapeFromMate()
+        public void TestMateWithTwoRooks()
         {
             King king = new King(0, 0, true, "");
-            Queen queen = new Queen(0, 3, false, "");
-            board[0, 0].Figure = king;
-            board[0, 3].Figure = queen;
+            Rook rook1 = new Rook(0, 3, false, "");
+            Rook rook2 = new Rook(1, 3, false, "");
 
-            Assert.False(service.IsCheckMate(board, king));
+            board[0, 0].Figure = king;
+            board[0, 3].Figure = rook1;
+            board[1, 3].Figure = rook2;
+
+            Assert.True(service.IsCheckMate(board, king));
         }
     }
 }
