@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\
 ChessEngine
 none
 false
 TRACE;DEBUG;TESTING_DRAGDROP
-D:\Prog\C#\WPF chess new\ChessEngine\App.xaml
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\App.xaml
 3-117389992
 
 111312116506
-201085842875
+20939998242
 Controls\ChessFigureView.xaml;MainWindow.xaml;Views\ChessGridView.xaml;
 
 False

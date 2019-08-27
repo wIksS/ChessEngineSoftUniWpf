@@ -232,7 +232,7 @@
                     {
                         //Check is one of our pieces can take the attacker
 
-                        //Indian style again
+                        
                         dynamic attackerFigure = attacker;
                         dynamic protectingFigure = square.Figure;
                         if (rulesService.Check(board, protectingFigure, attackerFigure))

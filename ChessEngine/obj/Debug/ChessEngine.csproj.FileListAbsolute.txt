@@ -123,3 +123,36 @@ D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.exe
 D:\Prog\C#\WPF chess new\ChessEngine\obj\Debug\ChessEngine.pdb
 D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.Services.dll
 D:\Prog\C#\WPF chess new\ChessEngine\bin\Debug\ChessEngine.Services.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\ChessEngine.exe.config
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\ChessEngine.exe
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\ChessEngine.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\Autofac.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\ChessEngine.Data.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\ChessEngine.Services.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\ChessEngine.Data.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\ChessEngine.Services.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\Autofac.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\Autofac.xml
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.csprojAssemblyReference.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Controls\ChessFigureView.g.cs
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\MainWindow.g.cs
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Views\ChessGridView.g.cs
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\App.g.cs
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine_MarkupCompile.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine_MarkupCompile.lref
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Controls\ChessFigureView.baml
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\MainWindow.baml
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\Views\ChessGridView.baml
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.g.resources
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.Properties.Resources.resources
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.csproj.GenerateResource.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.csproj.CoreCompileInputs.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.csproj.Fody.CopyLocal.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.csproj.CopyComplete
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.exe
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine\obj\Debug\ChessEngine.pdb

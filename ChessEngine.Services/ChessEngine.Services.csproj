@@ -52,7 +52,13 @@
     <Compile Include="Engine\ChessRulesService.cs" />
     <Compile Include="Engine\Contracts\IChessGameService.cs" />
     <Compile Include="Engine\Contracts\IChessRulesService.cs" />
+    <Compile Include="ProcessCommunication\Contracts\IProccessService.cs" />
+    <Compile Include="ProcessCommunication\ProcessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCIEngine\ChessMoveParserService.cs" />
+    <Compile Include="UCIEngine\Contracts\IChessMoveParserService.cs" />
+    <Compile Include="UCIEngine\Contracts\IEnginePlayerService.cs" />
+    <Compile Include="UCIEngine\EnginePlayerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChessEngine.Data\ChessEngine.Data.csproj">

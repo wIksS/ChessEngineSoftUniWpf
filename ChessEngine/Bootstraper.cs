@@ -7,6 +7,8 @@
     using ChessEngine.Services.Checkmate.Contracts;
     using ChessEngine.Services.Engine;
     using ChessEngine.Services.Engine.Contracts;
+    using System;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     public static class Bootstraper
@@ -16,23 +18,16 @@
         public static void Init()
         {
             var builder = new ContainerBuilder();
+            string servicesAssemblyPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ChessEngine.Services.dll");
+            Assembly assembly = Assembly.LoadFile(servicesAssemblyPath);
 
-            //builder.RegisterType<ChessGridViewModel>().AsSelf();
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-            //    .Where(t => t.Name.EndsWith("Service"))
-            //    .AsImplementedInterfaces();
-
-            builder.RegisterType<ChessRulesService>().As<IChessRulesService>();
-            builder.RegisterType<CheckmateService>().As<ICheckmateService>();
-            builder.RegisterType<BoardGeneratorService>().As<IBoardGeneratorService>();
-            builder.RegisterType<ChessGameService>().As<IChessGameService>();
-            builder.RegisterType<EmptyBoardGeneratorService>().As<IEmptyBoardGeneratorService>();
+            builder.RegisterAssemblyTypes(assembly)
+                .Where(t => t.Name.EndsWith("Service"))
+                .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.Name.EndsWith("ViewModel"))
                 .AsSelf();
-            //builder.RegisterType<BoardGeneratorService>()
-            //    .As<IBoardGeneratorService>();
 
             Container = builder.Build();
         }

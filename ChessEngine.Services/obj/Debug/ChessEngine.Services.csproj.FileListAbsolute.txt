@@ -7,3 +7,12 @@ D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.csp
 D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.csproj.CopyComplete
 D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.dll
 D:\Prog\C#\WPF chess new\ChessEngine.Services\obj\Debug\ChessEngine.Services.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Services.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Services.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Data.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Data.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.csprojAssemblyReference.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.csproj.CoreCompileInputs.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.csproj.CopyComplete
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.pdb

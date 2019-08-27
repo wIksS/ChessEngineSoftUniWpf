@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29209.62
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine", "ChessEngine\ChessEngine.csproj", "{E4AA4117-E85B-42C1-9D21-1991A700113E}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine.Services", "ChessEngine.Services\ChessEngine.Services.csproj", "{A8091427-25DF-48E7-849A-3D6AF4BD7D03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine.Tests", "ChessEngine.Tests\ChessEngine.Tests.csproj", "{C43A8063-0F5A-4B24-9433-A7E37ACAFA4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine.ChessConsole", "ChessEngine.ChessConsole\ChessEngine.ChessConsole.csproj", "{F4C484BC-29AF-40F0-AF64-ACA7A1ABD86C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C43A8063-0F5A-4B24-9433-A7E37ACAFA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C43A8063-0F5A-4B24-9433-A7E37ACAFA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C43A8063-0F5A-4B24-9433-A7E37ACAFA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C484BC-29AF-40F0-AF64-ACA7A1ABD86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C484BC-29AF-40F0-AF64-ACA7A1ABD86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C484BC-29AF-40F0-AF64-ACA7A1ABD86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C484BC-29AF-40F0-AF64-ACA7A1ABD86C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

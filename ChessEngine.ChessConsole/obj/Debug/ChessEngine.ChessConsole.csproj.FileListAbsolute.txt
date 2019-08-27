@@ -1,0 +1,12 @@
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\bin\Debug\ChessEngine.ChessConsole.exe.config
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\bin\Debug\ChessEngine.ChessConsole.exe
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\bin\Debug\ChessEngine.ChessConsole.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\bin\Debug\ChessEngine.Services.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\bin\Debug\ChessEngine.Data.dll
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\bin\Debug\ChessEngine.Services.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\bin\Debug\ChessEngine.Data.pdb
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\obj\Debug\ChessEngine.ChessConsole.csprojAssemblyReference.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\obj\Debug\ChessEngine.ChessConsole.csproj.CoreCompileInputs.cache
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\obj\Debug\ChessEngine.ChessConsole.csproj.CopyComplete
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\obj\Debug\ChessEngine.ChessConsole.exe
+C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.ChessConsole\obj\Debug\ChessEngine.ChessConsole.pdb
