@@ -69,7 +69,7 @@ namespace ChessEngine.Services
 					AddPattern(Row - 1, Col);
 					AddPattern(Row - 1, Col-1);
 					AddPattern(Row - 1, Col+1);
-					if (Row == 6)
+					if (Row == Constants.BoardRows-2)
 					{
 						AddPattern(Row - 2, Col);
 					}

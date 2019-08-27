@@ -36,15 +36,15 @@ namespace ChessEngine.ViewModels
         {
 			this.GameService = game;
 			this.LockBoard = false;
-			//this.MODE |= RenderMode.ROTATION;
+			this.MODE |= RenderMode.ROTATION;
 
-			//GameService.EnableGameSetting(GameSetting.WHITEBLACK);
-			//GameService.EnableGameSetting(GameSetting.THREEFOLDRULE);
-			//GameService.EnableGameSetting(GameSetting.STALEMATE);
-			//GameService.EnableGameSetting(GameSetting.PROMOTION);
+			GameService.EnableGameSetting(GameSetting.WHITEBLACK);
+			GameService.EnableGameSetting(GameSetting.THREEFOLDRULE);
+			GameService.EnableGameSetting(GameSetting.STALEMATE);
+			GameService.EnableGameSetting(GameSetting.PROMOTION);
 			//GameService.EnableGameSetting(GameSetting.AUTOPROMOTION);
-			//GameService.EnableGameSetting(GameSetting.CHECKMATE);
-			//GameService.EnableGameSetting(GameSetting.FIFTYRULE);
+			GameService.EnableGameSetting(GameSetting.CHECKMATE);
+			GameService.EnableGameSetting(GameSetting.FIFTYRULE);
 
 			this.WhiteToMove = GameService.White_to_move();
 			this.generatorService = generator;
@@ -137,16 +137,16 @@ namespace ChessEngine.ViewModels
 
 		public void Init(object data)
         {
-			//board = generatorService.Generate_from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-			board = generatorService.Generate_from_matrix(
-				"********\n" +
-				"***PP***\n" +
-				"********\n" +
-				"********\n" +
-				"********\n" +
-				"********\n" +
-				"***pp***\n" +
-				"********");
+            board = generatorService.Generate_from_fen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+            //board = generatorService.Generate_from_matrix(
+            //	"********\n" +
+            //	"***PP***\n" +
+            //	"********\n" +
+            //	"********\n" +
+            //	"********\n" +
+            //	"********\n" +
+            //	"***pp***\n" +
+            //	"********");
             foreach (var square in board)
             {
                 ChessGrid.Add(square);
@@ -176,7 +176,7 @@ namespace ChessEngine.ViewModels
 
 			ChessMoveInfo MoveInfo = GameService.Check(board, dynamicFigure, figure);
 
-			if (MoveInfo.IsPromotion)
+			if (MoveInfo.IsPromotion && (GameService.GetGameSetting() & GameSetting.AUTOPROMOTION) != GameSetting.AUTOPROMOTION)
 			{
 				this.LockBoard = true;
 				if (MoveInfo.MovedFigureIsWhite)
@@ -211,12 +211,26 @@ namespace ChessEngine.ViewModels
 				}
 				else
 				{
-					BlackPromotionFigures[MoveInfo.ToCol].Figure = selectedFigure;
-					BlackPromotionFigures[MoveInfo.ToCol].IsVisible = true;
+                    if ((MODE & RenderMode.ROTATION) != RenderMode.ROTATION)
+                    {
+                        BlackPromotionFigures[MoveInfo.ToCol].Figure = selectedFigure;
+                        BlackPromotionFigures[MoveInfo.ToCol].IsVisible = true;
+                    }
+                    else
+                    {
+                        BlackPromotionFigures[7-MoveInfo.ToCol].Figure = selectedFigure;
+                        BlackPromotionFigures[7-MoveInfo.ToCol].IsVisible = true;
+                    }
+
 					try
 					{
-						await Task.Delay(1000000, BlackPromotionFigures[MoveInfo.ToCol].PromotionToken);
-					}
+                        if ((MODE & RenderMode.ROTATION) != RenderMode.ROTATION)
+                        
+                            await Task.Delay(1000000, BlackPromotionFigures[MoveInfo.ToCol].PromotionToken);
+                        else
+
+                            await Task.Delay(1000000, BlackPromotionFigures[7-MoveInfo.ToCol].PromotionToken);
+                    }
 					catch
 					{
 						if (selectedFigure.Name == "Queen")
@@ -236,8 +250,16 @@ namespace ChessEngine.ViewModels
 							board[selectedFigure.Row, selectedFigure.Col].Figure = new Knight(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
 						}
 					}
-					BlackPromotionFigures[MoveInfo.ToCol].IsVisible = false;
-					BlackPromotionFigures[MoveInfo.ToCol].Figure = new Empty(1, 1);
+                    if ((MODE & RenderMode.ROTATION) != RenderMode.ROTATION)
+                    {
+                        BlackPromotionFigures[MoveInfo.ToCol].IsVisible = false;
+                        BlackPromotionFigures[MoveInfo.ToCol].Figure = new Empty(1, 1);
+                    }
+                    else
+                    {
+                        BlackPromotionFigures[7-MoveInfo.ToCol].IsVisible = false;
+                        BlackPromotionFigures[7-MoveInfo.ToCol].Figure = new Empty(1, 1);
+                    }
 				}
 				this.LockBoard = false;
 			}
