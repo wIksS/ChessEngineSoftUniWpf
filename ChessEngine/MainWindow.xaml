@@ -1,12 +1,38 @@
-﻿<Window x:Class="ChessEngine.MainWindow"
+﻿<Controls:MetroWindow x:Class="ChessEngine.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:ChessEngine"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="800">
+        x:Name="mainWindow"
+        Title="SofTuNI chEss" Height="800" Width="800"
+                      Background="Salmon">
     <Grid>
-        <Frame Source="Views/ChessGridView.xaml"></Frame>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.15*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="ChessGame" Source="Views/ChessGridView.xaml" NavigationUIVisibility="Hidden"/>
+
+        <Rectangle Grid.ColumnSpan="3" Opacity="0.5" Fill="Black">
+            <Rectangle.Style>
+                <Style TargetType="Rectangle">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsExpanded, ElementName=MenuExpander}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Rectangle.Style>
+        </Rectangle>
+        
+        <Expander Name="MenuExpander" Grid.ColumnSpan="2" Header="Menu" ExpandDirection="Right" BorderThickness="0" Padding="0">
+            <Frame Background="{Binding Background, ElementName=mainWindow}" Source="Views/MenuView.xaml" NavigationUIVisibility="Hidden"></Frame>
+        </Expander>
     </Grid>
-</Window>
+</Controls:MetroWindow>

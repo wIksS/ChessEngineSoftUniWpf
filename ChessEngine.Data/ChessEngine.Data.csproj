@@ -55,17 +55,18 @@
     <Compile Include="ChessGameInfo.cs" />
     <Compile Include="ChessMoveInfo.cs" />
     <Compile Include="Common\Constants.cs" />
-    <Compile Include="GameSetting.cs" />
+    <Compile Include="GameSettings.cs" />
     <Compile Include="King.cs" />
     <Compile Include="PromotionItem.cs" />
     <Compile Include="Queen.cs" />
     <Compile Include="Knight.cs" />
     <Compile Include="Empty.cs" />
     <Compile Include="Pawn.cs" />
-    <Compile Include="RenderMode.cs" />
+    <Compile Include="RenderSettings.cs" />
     <Compile Include="Rook.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserPreferences.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

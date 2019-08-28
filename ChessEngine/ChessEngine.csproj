@@ -41,8 +41,17 @@
     <Reference Include="Autofac, Version=4.9.4.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.9.4\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MahApps.Metro.1.6.5\lib\net46\MahApps.Metro.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1367, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.2.0.1367\lib\net45\Prism.dll</HintPath>
     </Reference>
     <Reference Include="PropertyChanged, Version=2.6.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.2.6.1\lib\net452\PropertyChanged.dll</HintPath>
@@ -50,9 +59,12 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,6 +88,9 @@
     <Compile Include="Controls\ChessFigureView.xaml.cs">
       <DependentUpon>ChessFigureView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OptionSwitchView.xaml.cs">
+      <DependentUpon>OptionSwitchView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\PromotionBlackView.xaml.cs">
       <DependentUpon>PromotionBlackView.xaml</DependentUpon>
     </Compile>
@@ -83,19 +98,19 @@
       <DependentUpon>PromotionWhiteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="RelayCommand.cs" />
-    <Compile Include="Services\BoardParserService.cs" />
-    <Compile Include="Services\ChessGameService.cs" />
-    <Compile Include="Services\ChessRulesService.cs" />
-    <Compile Include="Services\BoardGeneratorService.cs" />
-    <Compile Include="Services\Contracts\IBoardGeneratorService.cs" />
-    <Compile Include="Services\Contracts\IBoardParserService.cs" />
-    <Compile Include="Services\Contracts\IChessGameService.cs" />
-    <Compile Include="Services\Contracts\IChessRulesService.cs" />
     <Compile Include="ViewModels\ChessGridViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="Views\ChessGridView.xaml.cs">
       <DependentUpon>ChessGridView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\ChessFigureView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OptionSwitchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +136,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ChessGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,6 +189,14 @@
     <ProjectReference Include="..\ChessEngine.Data\ChessEngine.Data.csproj">
       <Project>{1b6a548e-7b91-4a8d-931a-698c47aa6a7e}</Project>
       <Name>ChessEngine.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChessEngine.EventAggregator\ChessEngine.EventAggregator.csproj">
+      <Project>{E316EC97-BC8E-4D1F-AA48-8D4F392D9205}</Project>
+      <Name>ChessEngine.EventAggregator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChessEngine.Services\ChessEngine.Services.csproj">
+      <Project>{4f0f0f2d-902d-4b06-b9a8-d697c1e58ca9}</Project>
+      <Name>ChessEngine.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

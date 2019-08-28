@@ -1,0 +1,46 @@
+﻿<Page x:Class="ChessEngine.Views.MenuView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ChessEngine.Views"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:controls="clr-namespace:ChessEngine.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MenuPage">
+    <Page.Resources>
+        <Style TargetType="Controls:ToggleSwitch">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+    </Page.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
+        <StackPanel>
+            <TextBlock Text="Game settings"/>
+
+            <controls:OptionSwitchView Setting="WhiteBlack" SettingIsTrue="{Binding DummyGameSettings.WhiteBlack}" Header="One move per side" ClickedCommand="{Binding GameSettingsChangeCommand}"/>
+            <controls:OptionSwitchView Setting="Promotion"  SettingIsTrue="{Binding DummyGameSettings.Promotion}" Header="Promotion"  ClickedCommand="{Binding GameSettingsChangeCommand}"/>
+            <controls:OptionSwitchView Setting="Threefold"  SettingIsTrue="{Binding DummyGameSettings.Threefold}" Header="Threefold rule"  ClickedCommand="{Binding GameSettingsChangeCommand}"/>
+            <controls:OptionSwitchView Setting="Fiftyrule"  SettingIsTrue="{Binding DummyGameSettings.FiftyRule}" Header="Fifty moves rule" ClickedCommand="{Binding GameSettingsChangeCommand}"/>
+            <controls:OptionSwitchView Setting="Stalemate"  SettingIsTrue="{Binding DummyGameSettings.Stalemate}" Header="Stalemate" ClickedCommand="{Binding GameSettingsChangeCommand}"/>
+            <controls:OptionSwitchView Setting="Checkmate"  SettingIsTrue="{Binding DummyGameSettings.Checkmate}" Header="Checkmate" ClickedCommand="{Binding GameSettingsChangeCommand}"/>
+
+            <Separator/>
+            <TextBlock Text="Render settings"/>
+
+            <controls:OptionSwitchView Setting="Rotate" SettingIsTrue="{Binding DummyRenderSettings.RotateBoard}" Header="Rotate board on enemy turn"  ClickedCommand="{Binding RenderSettingsChangeCommand}"/>
+
+            <Separator/>
+            <TextBlock Text="User Preferences"/>
+
+            <controls:OptionSwitchView Setting="Autopromotion" SettingIsTrue="{Binding DummyUserPreferences.AutoPromotion}" Header="Auto promotion" ClickedCommand="{Binding PreferenceChangeCommand}"/>
+            <controls:OptionSwitchView Setting="StockfishEval" SettingIsTrue="{Binding DummyUserPreferences.ShowStockfishEval}" Header="Stockfish evaluation" ClickedCommand="{Binding PreferenceChangeCommand}"/>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

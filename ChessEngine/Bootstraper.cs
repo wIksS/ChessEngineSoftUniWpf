@@ -2,8 +2,10 @@
 using ChessEngine.Services;
 using ChessEngine.Services.Contracts;
 using ChessEngine.ViewModels;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -19,16 +21,17 @@ namespace ChessEngine
         {
             var builder = new ContainerBuilder();
 
-            //builder.RegisterType<ChessGridViewModel>().AsSelf();
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                .Where(t => t.Name.EndsWith("Service"))
+            string servicesAssemblyPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "ChessEngine.Services.dll");
+            Assembly assembly = Assembly.LoadFile(servicesAssemblyPath);
+
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance(); 
+
+            builder.RegisterAssemblyTypes(assembly)
                 .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                 .Where(t => t.Name.EndsWith("ViewModel"))
                 .AsSelf();
-            //builder.RegisterType<BoardGeneratorService>()
-            //    .As<IBoardGeneratorService>();
 
             Container = builder.Build();
         }

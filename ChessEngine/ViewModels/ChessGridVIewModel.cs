@@ -1,6 +1,7 @@
 ﻿using ChessEngine.Common;
 using ChessEngine.Data;
 using ChessEngine.Services.Contracts;
+using ChessEngine.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,17 +11,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using Prism.Events;
+using ChessEngine.EventAggregatorNamespace;
 
 namespace ChessEngine.ViewModels
 {
     public class ChessGridViewModel : BasePropertyChanged
     {
-		private RenderMode MODE;
+		private RenderSettings renderSettings;
+		private UserPreferences userPreferences;
 
         private readonly IBoardGeneratorService generatorService;
         private readonly IChessGameService GameService;
+        private readonly IEventAggregator eventAggregator;
 
-		private ICommand initCommand;
+        private ICommand initCommand;
         private ICommand dragInitCommand;
         private ICommand dragOverCommand;
 		private ICommand dragEnterCommand;
@@ -32,19 +37,13 @@ namespace ChessEngine.ViewModels
 
 		public bool LockBoard { get; set; }
 
-		public ChessGridViewModel(IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game)
+		public ChessGridViewModel(IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game, IEventAggregator eventAggregator)
         {
-			this.GameService = game;
+            this.eventAggregator = eventAggregator;
+            this.GameService = game;
 			this.LockBoard = false;
-			this.MODE |= RenderMode.ROTATION;
-
-			GameService.EnableGameSetting(GameSetting.WHITEBLACK);
-			GameService.EnableGameSetting(GameSetting.THREEFOLDRULE);
-			GameService.EnableGameSetting(GameSetting.STALEMATE);
-			GameService.EnableGameSetting(GameSetting.PROMOTION);
-			//GameService.EnableGameSetting(GameSetting.AUTOPROMOTION);
-			GameService.EnableGameSetting(GameSetting.CHECKMATE);
-			GameService.EnableGameSetting(GameSetting.FIFTYRULE);
+            this.renderSettings = new RenderSettings();
+            this.userPreferences = new UserPreferences();
 
 			this.WhiteToMove = GameService.White_to_move();
 			this.generatorService = generator;
@@ -52,7 +51,32 @@ namespace ChessEngine.ViewModels
             this.ReverseChessGrid = new ObservableCollection<Square>();
             this.WhitePromotionFigures = new ObservableCollection<PromotionItem>();
             this.BlackPromotionFigures = new ObservableCollection<PromotionItem>();
-		}
+
+
+            eventAggregator.GetEvent<PreferenceChanges>().Subscribe(HandlePreferenceChanges);
+            eventAggregator.GetEvent<SettingChanges>().Subscribe(HandleSettingChanges);
+            eventAggregator.GetEvent<RenderChanges>().Subscribe(HandleRenderChanges);
+        }
+
+        private void HandleRenderChanges(RenderSettings obj)
+        {
+            if (renderSettings.RotateBoard != obj.RotateBoard)
+            {
+                ReverseChessGrid.Clear();
+                for (int i = ChessGrid.Count - 1; i >= 0; i--) ReverseChessGrid.Add(ChessGrid[i]);
+            }
+            obj.CopyTo(renderSettings);
+        }
+
+        private void HandleSettingChanges(GameSettings obj)
+        {
+            obj.CopyTo(GameService.GetGameSetting());
+        }
+
+        private void HandlePreferenceChanges(UserPreferences obj)
+        {
+            obj.CopyTo(userPreferences);
+        }
 
         public ObservableCollection<Square> ChessGrid { get; set; }
         public ObservableCollection<Square> ReverseChessGrid { get; set; }
@@ -151,12 +175,12 @@ namespace ChessEngine.ViewModels
             {
                 ChessGrid.Add(square);
             }
-			if ((MODE & RenderMode.ROTATION) == RenderMode.ROTATION)
+			if (renderSettings.RotateBoard)
 				for (int i = ChessGrid.Count - 1; i >= 0; i--) ReverseChessGrid.Add(ChessGrid[i]);
 			else
-				ReverseChessGrid = ChessGrid;
+                for (int i = 0; i < ChessGrid.Count; i++) ReverseChessGrid.Add(ChessGrid[i]);
 
-			for(int i = 0; i < Constants.BoardCols; i++)
+            for (int i = 0; i < Constants.BoardCols; i++)
 			{
 				WhitePromotionFigures.Add(new PromotionItem());
 				BlackPromotionFigures.Add(new PromotionItem());
@@ -176,92 +200,106 @@ namespace ChessEngine.ViewModels
 
 			ChessMoveInfo MoveInfo = GameService.Check(board, dynamicFigure, figure);
 
-			if (MoveInfo.IsPromotion && (GameService.GetGameSetting() & GameSetting.AUTOPROMOTION) != GameSetting.AUTOPROMOTION)
+            if (MoveInfo.IsPromotion && GameService.GetGameSetting().Promotion)
 			{
-				this.LockBoard = true;
-				if (MoveInfo.MovedFigureIsWhite)
-				{
-					WhitePromotionFigures[MoveInfo.ToCol].Figure = selectedFigure;
-					WhitePromotionFigures[MoveInfo.ToCol].IsVisible = true;
-					try
-					{
-						await Task.Delay(1000000, WhitePromotionFigures[MoveInfo.ToCol].PromotionToken);
-					}
-					catch
-					{
-						if(selectedFigure.Name == "Queen")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Queen(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-						else if (selectedFigure.Name == "Rook")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Rook(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-						else if (selectedFigure.Name == "Bishop")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Bishop(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-						else if (selectedFigure.Name == "Knight")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Knight(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-					}
-					WhitePromotionFigures[MoveInfo.ToCol].IsVisible = false;
-					WhitePromotionFigures[MoveInfo.ToCol].Figure = new Empty(1,1);
-				}
-				else
-				{
-                    if ((MODE & RenderMode.ROTATION) != RenderMode.ROTATION)
+                if (userPreferences.AutoPromotion)
+                {
+                    if (MoveInfo.MovedFigureIsWhite)
                     {
-                        BlackPromotionFigures[MoveInfo.ToCol].Figure = selectedFigure;
-                        BlackPromotionFigures[MoveInfo.ToCol].IsVisible = true;
+                        board[selectedFigure.Row, selectedFigure.Col].Figure = new Queen(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, "/Images/whitequeen.png");
                     }
                     else
                     {
-                        BlackPromotionFigures[7-MoveInfo.ToCol].Figure = selectedFigure;
-                        BlackPromotionFigures[7-MoveInfo.ToCol].IsVisible = true;
+                        board[selectedFigure.Row, selectedFigure.Col].Figure = new Queen(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, "/Images/blackqueen.png");
                     }
-
-					try
-					{
-                        if ((MODE & RenderMode.ROTATION) != RenderMode.ROTATION)
-                        
-                            await Task.Delay(1000000, BlackPromotionFigures[MoveInfo.ToCol].PromotionToken);
+                }
+                else
+                {
+                    this.LockBoard = true;
+                    if (MoveInfo.MovedFigureIsWhite)
+                    {
+                        WhitePromotionFigures[MoveInfo.ToCol].Figure = selectedFigure;
+                        WhitePromotionFigures[MoveInfo.ToCol].IsVisible = true;
+                        try
+                        {
+                            await Task.Delay(1000000, WhitePromotionFigures[MoveInfo.ToCol].PromotionToken);
+                        }
+                        catch
+                        {
+                            if (selectedFigure.Name == "Queen")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Queen(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                            else if (selectedFigure.Name == "Rook")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Rook(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                            else if (selectedFigure.Name == "Bishop")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Bishop(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                            else if (selectedFigure.Name == "Knight")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Knight(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                        }
+                        WhitePromotionFigures[MoveInfo.ToCol].IsVisible = false;
+                        WhitePromotionFigures[MoveInfo.ToCol].Figure = new Empty(1, 1);
+                    }
+                    else
+                    {
+                        if (!renderSettings.RotateBoard)
+                        {
+                            BlackPromotionFigures[MoveInfo.ToCol].Figure = selectedFigure;
+                            BlackPromotionFigures[MoveInfo.ToCol].IsVisible = true;
+                        }
                         else
+                        {
+                            BlackPromotionFigures[7 - MoveInfo.ToCol].Figure = selectedFigure;
+                            BlackPromotionFigures[7 - MoveInfo.ToCol].IsVisible = true;
+                        }
 
-                            await Task.Delay(1000000, BlackPromotionFigures[7-MoveInfo.ToCol].PromotionToken);
+                        try
+                        {
+                            if (!renderSettings.RotateBoard)
+
+                                await Task.Delay(1000000, BlackPromotionFigures[MoveInfo.ToCol].PromotionToken);
+                            else
+
+                                await Task.Delay(1000000, BlackPromotionFigures[7 - MoveInfo.ToCol].PromotionToken);
+                        }
+                        catch
+                        {
+                            if (selectedFigure.Name == "Queen")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Queen(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                            else if (selectedFigure.Name == "Rook")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Rook(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                            else if (selectedFigure.Name == "Bishop")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Bishop(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                            else if (selectedFigure.Name == "Knight")
+                            {
+                                board[selectedFigure.Row, selectedFigure.Col].Figure = new Knight(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
+                            }
+                        }
+                        if (!renderSettings.RotateBoard)
+                        {
+                            BlackPromotionFigures[MoveInfo.ToCol].IsVisible = false;
+                            BlackPromotionFigures[MoveInfo.ToCol].Figure = new Empty(1, 1);
+                        }
+                        else
+                        {
+                            BlackPromotionFigures[7 - MoveInfo.ToCol].IsVisible = false;
+                            BlackPromotionFigures[7 - MoveInfo.ToCol].Figure = new Empty(1, 1);
+                        }
                     }
-					catch
-					{
-						if (selectedFigure.Name == "Queen")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Queen(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-						else if (selectedFigure.Name == "Rook")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Rook(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-						else if (selectedFigure.Name == "Bishop")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Bishop(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-						else if (selectedFigure.Name == "Knight")
-						{
-							board[selectedFigure.Row, selectedFigure.Col].Figure = new Knight(selectedFigure.Row, selectedFigure.Col, selectedFigure.IsWhite, selectedFigure.Image);
-						}
-					}
-                    if ((MODE & RenderMode.ROTATION) != RenderMode.ROTATION)
-                    {
-                        BlackPromotionFigures[MoveInfo.ToCol].IsVisible = false;
-                        BlackPromotionFigures[MoveInfo.ToCol].Figure = new Empty(1, 1);
-                    }
-                    else
-                    {
-                        BlackPromotionFigures[7-MoveInfo.ToCol].IsVisible = false;
-                        BlackPromotionFigures[7-MoveInfo.ToCol].Figure = new Empty(1, 1);
-                    }
-				}
-				this.LockBoard = false;
+                    this.LockBoard = false;
+                }
 			}
 
 			if (GameService.Process_move(board,MoveInfo))

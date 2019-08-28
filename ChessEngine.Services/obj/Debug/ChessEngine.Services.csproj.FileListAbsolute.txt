@@ -1,0 +1,11 @@
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.csprojAssemblyReference.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.csproj.CoreCompileInputs.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Services.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Services.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Data.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\ChessEngine.Data.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.csproj.CopyComplete
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\obj\Debug\ChessEngine.Services.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\System.ValueTuple.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.Services\bin\Debug\System.ValueTuple.xml

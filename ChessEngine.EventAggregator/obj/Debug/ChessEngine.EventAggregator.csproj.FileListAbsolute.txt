@@ -1,0 +1,14 @@
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\ChessEngine.EventAggregator.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\ChessEngine.EventAggregator.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\ChessEngine.Data.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\Prism.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\System.ValueTuple.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\ChessEngine.Data.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\Prism.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\Prism.xml
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Debug\System.ValueTuple.xml
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Debug\ChessEngine.EventAggregator.csprojAssemblyReference.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Debug\ChessEngine.EventAggregator.csproj.CoreCompileInputs.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Debug\ChessEngine.EventAggregator.csproj.CopyComplete
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Debug\ChessEngine.EventAggregator.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Debug\ChessEngine.EventAggregator.pdb

@@ -9,7 +9,7 @@ namespace ChessEngine.Data
 {
 	public class ChessGameInfo
 	{
-		public GameSetting SETTINGS { get; set; }
+		public GameSettings Settings { get; set; }
 
 		public bool WhiteToMove { get; set; }
 		public bool WKingSideCastle { get; set; }
@@ -24,7 +24,8 @@ namespace ChessEngine.Data
 
 		public ChessGameInfo()
 		{
-			History = new List<ChessMoveInfo>();
+            Settings = new GameSettings();
+            History = new List<ChessMoveInfo>();
 			WhiteToMove = true;
 			WKingSideCastle = true;
 			BKingSideCastle = true;

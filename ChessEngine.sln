@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine", "ChessEngine\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine.Data", "ChessEngine.Data\ChessEngine.Data.csproj", "{1B6A548E-7B91-4A8D-931A-698C47AA6A7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine.Services", "ChessEngine.Services\ChessEngine.Services.csproj", "{4F0F0F2D-902D-4B06-B9A8-D697C1E58CA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessEngine.EventAggregator", "ChessEngine.EventAggregator\ChessEngine.EventAggregator.csproj", "{E316EC97-BC8E-4D1F-AA48-8D4F392D9205}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{1B6A548E-7B91-4A8D-931A-698C47AA6A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B6A548E-7B91-4A8D-931A-698C47AA6A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B6A548E-7B91-4A8D-931A-698C47AA6A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F0F0F2D-902D-4B06-B9A8-D697C1E58CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F0F0F2D-902D-4B06-B9A8-D697C1E58CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F0F0F2D-902D-4B06-B9A8-D697C1E58CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F0F0F2D-902D-4B06-B9A8-D697C1E58CA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E316EC97-BC8E-4D1F-AA48-8D4F392D9205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E316EC97-BC8E-4D1F-AA48-8D4F392D9205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E316EC97-BC8E-4D1F-AA48-8D4F392D9205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E316EC97-BC8E-4D1F-AA48-8D4F392D9205}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
