@@ -11,5 +11,7 @@ namespace ChessEngine.Services.Contracts
 	{
 		string Generate_simple_fen_from_board(Square[,] board);
 		string Generate_full_fen_from_board(Square[,] Board, bool WhiteToMove, bool WKingSideCastle, bool BKingSideCastle, bool WQueenSideCastle, bool BQueenSideCastle, int EnPasRow, int EnPasCol, int FiftyRuleCounter, int FullMove);
-	}
+        string Square_parser(int row, int col);
+        string MoveParserUCI(ChessMoveInfo moveInfo);
+    }
 }

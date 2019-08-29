@@ -120,17 +120,6 @@ namespace ChessEngine.Controls
             MessageBox.Show(Figure.ToString());
         }
 
-#if !TESTING_DRAGDROP
-		private void DragInitHandler(object sender, MouseButtonEventArgs e)
-        {
-            DragInitCommand.Execute(Figure);
-        }
-
-        private void DragOverHandler(object sender, MouseButtonEventArgs e)
-        {
-            DragOverCommand.Execute(Figure);
-        }
-#else
 		protected override void OnMouseMove(MouseEventArgs e)
 		{
 			base.OnMouseMove(e);
@@ -146,7 +135,7 @@ namespace ChessEngine.Controls
 					UIElement control = FigImage;
 					// convert FrameworkElement to PNG stream
 					var pngStream = new MemoryStream();
-					control.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+					control.Measure(new Size(this.ActualWidth - 16, this.ActualHeight - 16));
 					Rect rect = new Rect(0, 0, control.DesiredSize.Width, control.DesiredSize.Height);
 					RenderTargetBitmap rtb = new RenderTargetBitmap((int)control.DesiredSize.Width, (int)control.DesiredSize.Height, 96, 96, PixelFormats.Pbgra32);
 
@@ -166,8 +155,8 @@ namespace ChessEngine.Controls
 					cursorStream.Write(new byte[1] { (byte)control.DesiredSize.Height }, 0, 1);
 					cursorStream.Write(new byte[1] { 0x00 }, 0, 1);
 					cursorStream.Write(new byte[1] { 0x00 }, 0, 1);
-					cursorStream.Write(new byte[2] { (byte)32.0, 0x00 }, 0, 2);
-					cursorStream.Write(new byte[2] { (byte)32.0, 0x00 }, 0, 2);
+					cursorStream.Write(new byte[2] { (byte)(control.DesiredSize.Width / 2), 0x00 }, 0, 2);
+					cursorStream.Write(new byte[2] { (byte)(control.DesiredSize.Height / 2), 0x00 }, 0, 2);
 					cursorStream.Write(new byte[4] {
 										  (byte)((pngStream.Length & 0x000000FF)),
 										  (byte)((pngStream.Length & 0x0000FF00) >> 0x08),
@@ -230,6 +219,5 @@ namespace ChessEngine.Controls
 			DragOverCommand.Execute(Figure);
 			e.Handled = true;
 		}
-#endif
 	}
 }

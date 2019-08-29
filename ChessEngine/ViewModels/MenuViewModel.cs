@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace ChessEngine.ViewModels
 {
-    public class MenuViewModel : BasePropertyChanged
+    public class MenuViewModel
     {
         private readonly IEventAggregator eventAggregator;
 
@@ -20,12 +20,10 @@ namespace ChessEngine.ViewModels
         private ICommand gameSettingsChangeCommand;
         private ICommand renderSettingsChangeCommand;
 
+        public GameSettings DummyGameSettings { get; set; }
         public UserPreferences DummyPreferences { get; set; }
         public RenderSettings DummyRenderSettings { get; set; }
-        public GameSettings DummyGameSettings { get; set; }
-
-        public bool dummyThicc { get; set; } = true;
-
+        
         public MenuViewModel(IEventAggregator eventAggregator)
         {
             DummyPreferences = new UserPreferences();
@@ -33,6 +31,10 @@ namespace ChessEngine.ViewModels
             DummyGameSettings = new GameSettings();
 
             this.eventAggregator = eventAggregator;
+
+            SendGameSettings();
+            SendRenderSettings();
+            SendPreferences();
         }
 
         private void SendPreferences()

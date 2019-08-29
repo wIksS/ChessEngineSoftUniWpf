@@ -611,15 +611,23 @@ namespace ChessEngine.Services
 						board[7, 7].Figure.Name=="Rook" && (board[7,7].Figure as Rook).HasMoved == false &&
 						Square_is_empty(board[7,6]) && Square_is_empty(board[7, 5]))
 					{
-						MoveInfo.WasKingSideCastle = true;
-						return MoveInfo;
+                        var atkBoard = Generate_attack_board(board, !from.IsWhite);
+                        if (!atkBoard[7, 6] && !atkBoard[7, 5])
+                        {
+                            MoveInfo.WasKingSideCastle = true;
+                            return MoveInfo;
+                        }
 					}
 					if (to.Row == 7 && to.Col == 2 &&
 						board[7, 0].Figure.Name == "Rook" && (board[7, 0].Figure as Rook).HasMoved == false &&
 						Square_is_empty(board[7, 1]) && Square_is_empty(board[7, 2]) && Square_is_empty(board[7, 3]))
 					{
-						MoveInfo.WasQueenSideCastle = true;
-						return MoveInfo;
+                        var atkBoard = Generate_attack_board(board, !from.IsWhite);
+                        if (!atkBoard[7, 1] && !atkBoard[7, 2] && !atkBoard[7, 3])
+                        {
+                            MoveInfo.WasQueenSideCastle = true;
+                            return MoveInfo;
+                        }
 					}
 				}
 				else
@@ -628,15 +636,24 @@ namespace ChessEngine.Services
 						board[0, 7].Figure.Name == "Rook" && (board[0, 7].Figure as Rook).HasMoved == false &&
 						Square_is_empty(board[0, 6]) && Square_is_empty(board[0, 5]))
 					{
-						MoveInfo.WasKingSideCastle = true;
-						return MoveInfo;
+                        var atkBoard = Generate_attack_board(board, !from.IsWhite);
+                        if (!atkBoard[0, 6] && !atkBoard[0, 5])
+                        {
+                            MoveInfo.WasKingSideCastle = true;
+                            return MoveInfo;
+                        }
+
 					}
 					if (to.Row == 0 && to.Col == 2 &&
 						board[0, 0].Figure.Name == "Rook" && (board[0, 0].Figure as Rook).HasMoved == false &&
 						Square_is_empty(board[0, 1]) && Square_is_empty(board[0, 2]) && Square_is_empty(board[0, 3]))
 					{
-						MoveInfo.WasQueenSideCastle = true;
-						return MoveInfo;
+                        var atkBoard = Generate_attack_board(board, !from.IsWhite);
+                        if (!atkBoard[0, 1] && !atkBoard[0, 2] && !atkBoard[0, 3])
+                        {
+                            MoveInfo.WasQueenSideCastle = true;
+                            return MoveInfo;
+                        }
 					}
 				}
 			}

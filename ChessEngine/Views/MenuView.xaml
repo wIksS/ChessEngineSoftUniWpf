@@ -8,7 +8,7 @@
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:controls="clr-namespace:ChessEngine.Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="950" d:DesignWidth="800"
       Title="MenuPage">
     <Page.Resources>
         <Style TargetType="Controls:ToggleSwitch">
@@ -39,8 +39,8 @@
             <Separator/>
             <TextBlock Text="User Preferences"/>
 
-            <controls:OptionSwitchView Setting="Autopromotion" SettingIsTrue="{Binding DummyUserPreferences.AutoPromotion}" Header="Auto promotion" ClickedCommand="{Binding PreferenceChangeCommand}"/>
-            <controls:OptionSwitchView Setting="StockfishEval" SettingIsTrue="{Binding DummyUserPreferences.ShowStockfishEval}" Header="Stockfish evaluation" ClickedCommand="{Binding PreferenceChangeCommand}"/>
+            <controls:OptionSwitchView Setting="Autopromotion" SettingIsTrue="{Binding DummyPreferences.AutoPromotion}" Header="Auto promotion" ClickedCommand="{Binding PreferenceChangeCommand}"/>
+            <controls:OptionSwitchView Setting="StockfishEval" SettingIsTrue="{Binding DummyPreferences.ShowStockfishEval}" Header="Stockfish evaluation" ClickedCommand="{Binding PreferenceChangeCommand}"/>
         </StackPanel>
     </ScrollViewer>
 </Page>

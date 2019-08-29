@@ -8,7 +8,7 @@ namespace ChessEngine.Data
 {
     public class UserPreferences : BasePropertyChanged
     {
-        public bool AutoPromotion { get; set; } = false;
+        public bool AutoPromotion { get; set; } = true;
         public bool ShowStockfishEval { get; set; } = true;
 
         public void CopyTo(UserPreferences cpy)

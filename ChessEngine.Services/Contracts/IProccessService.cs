@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessEngine.Services.ProcessCommunication.Contracts
+namespace ChessEngine.Services.Contracts
 {
     public interface IProccessService
     {

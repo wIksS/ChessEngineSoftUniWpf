@@ -9,11 +9,11 @@ namespace ChessEngine.Data
     public class GameSettings : BasePropertyChanged
     {
         public bool WhiteBlack { get; set; } = true;
+        public bool Promotion { get; set; } = true;
         public bool Threefold { get; set; } = true;
         public bool FiftyRule { get; set; } = true;
         public bool Checkmate { get; set; } = true;
         public bool Stalemate { get; set; } = true;
-        public bool Promotion { get; set; } = true;
 
         public void CopyTo(GameSettings cpy)
         {

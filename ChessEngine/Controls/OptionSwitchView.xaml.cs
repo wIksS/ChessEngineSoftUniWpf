@@ -20,25 +20,25 @@ namespace ChessEngine.Controls
     /// </summary>
     public partial class OptionSwitchView : UserControl
     {
-        public static readonly DependencyProperty setting =
+        private static readonly DependencyProperty setting =
         DependencyProperty.Register(
               "Setting",
                typeof(string),
                typeof(OptionSwitchView));
 
-        public static readonly DependencyProperty clickedCommand =
+        private static readonly DependencyProperty clickedCommand =
         DependencyProperty.Register(
               "ClickedCommand",
                typeof(ICommand),
                typeof(OptionSwitchView));
 
-        public static readonly DependencyProperty header =
+        private static readonly DependencyProperty header =
         DependencyProperty.Register(
               "Header",
                typeof(string),
                typeof(OptionSwitchView));
 
-        public static readonly DependencyProperty isEnabled =
+        private static readonly DependencyProperty isEnabled =
         DependencyProperty.Register(
               "SettingIsTrue",
                typeof(bool),

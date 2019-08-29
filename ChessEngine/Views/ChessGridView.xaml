@@ -29,6 +29,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        
         <Style TargetType="ItemsControl" x:Key="ChessGridStyle">
             <Setter Property="ItemsSource" Value="{Binding ChessGrid}"/>
             <Style.Triggers>

@@ -13,16 +13,16 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Click="QueenClick">
+        <Button Grid.Row="0" Click="QueenClick" Background="White">
             <Image Source="/Images/blackqueen.png" />
         </Button>
-        <Button Grid.Row="1" Click="RookClick">
+        <Button Grid.Row="1" Click="RookClick" Background="White">
             <Image Source="/Images/blackrook.png" />
         </Button>
-        <Button Grid.Row="2" Click="BishopClick">
+        <Button Grid.Row="2" Click="BishopClick" Background="White">
             <Image Source="/Images/blackbishop.png" />
         </Button>
-        <Button Grid.Row="3" Click="KnightClick">
+        <Button Grid.Row="3" Click="KnightClick" Background="White">
             <Image Source="/Images/blackknight.png" />
         </Button>
     </Grid>

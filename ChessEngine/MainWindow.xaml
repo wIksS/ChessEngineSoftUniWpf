@@ -7,18 +7,22 @@
         xmlns:local="clr-namespace:ChessEngine"
         mc:Ignorable="d"
         x:Name="mainWindow"
-        Title="SofTuNI chEss" Height="800" Width="800"
-                      Background="Salmon">
+        Title="SofTuNI chEss"
+        Height="800" Width="800"
+        ResizeMode="NoResize"
+        Background="Salmon">
     <Grid>
         <Grid.ColumnDefinitions>
+            <!--3.15-->
             <ColumnDefinition Width="0.15*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.15*"/>
         </Grid.ColumnDefinitions>
 
         <Frame Grid.Column="1" Grid.ColumnSpan="2" x:Name="ChessGame" Source="Views/ChessGridView.xaml" NavigationUIVisibility="Hidden"/>
 
-        <Rectangle Grid.ColumnSpan="3" Opacity="0.5" Fill="Black">
+        <Rectangle x:Name="LockingRect" Grid.ColumnSpan="3" Opacity="0.5" Fill="Black">
             <Rectangle.Style>
                 <Style TargetType="Rectangle">
                     <Setter Property="Visibility" Value="Hidden"/>
@@ -34,5 +38,7 @@
         <Expander Name="MenuExpander" Grid.ColumnSpan="2" Header="Menu" ExpandDirection="Right" BorderThickness="0" Padding="0">
             <Frame Background="{Binding Background, ElementName=mainWindow}" Source="Views/MenuView.xaml" NavigationUIVisibility="Hidden"></Frame>
         </Expander>
+
+        <Frame Grid.Column="3" Background="{Binding Background, ElementName=mainWindow}" Source="Views/EngineEvalView.xaml" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Controls:MetroWindow>

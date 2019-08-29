@@ -22,8 +22,11 @@ namespace ChessEngine.ViewModels
 		private UserPreferences userPreferences;
 
         private readonly IBoardGeneratorService generatorService;
-        private readonly IChessGameService GameService;
+        private readonly IChessGameService gameService;
         private readonly IEventAggregator eventAggregator;
+        private readonly IUCIEngineService engineService;
+        private readonly IBoardParserService boardParser;
+        private UCIListener listener;
 
         private ICommand initCommand;
         private ICommand dragInitCommand;
@@ -37,15 +40,22 @@ namespace ChessEngine.ViewModels
 
 		public bool LockBoard { get; set; }
 
-		public ChessGridViewModel(IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game, IEventAggregator eventAggregator)
+		public ChessGridViewModel(IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game, IEventAggregator eventAggregator, IUCIEngineService engineService, IBoardParserService boardParser)
         {
+            this.boardParser = boardParser;
+            this.listener = new UCIListener();
+            this.listener.PropertyChanged += Listener_PropertyChanged;
+            this.engineService = engineService;
+            this.engineService.Init(5000);
+            this.engineService.AddListener(listener);
+
             this.eventAggregator = eventAggregator;
-            this.GameService = game;
+            this.gameService = game;
 			this.LockBoard = false;
             this.renderSettings = new RenderSettings();
             this.userPreferences = new UserPreferences();
 
-			this.WhiteToMove = GameService.White_to_move();
+			this.WhiteToMove = gameService.White_to_move();
 			this.generatorService = generator;
             this.ChessGrid = new ObservableCollection<Square>();
             this.ReverseChessGrid = new ObservableCollection<Square>();
@@ -53,9 +63,18 @@ namespace ChessEngine.ViewModels
             this.BlackPromotionFigures = new ObservableCollection<PromotionItem>();
 
 
-            eventAggregator.GetEvent<PreferenceChanges>().Subscribe(HandlePreferenceChanges);
-            eventAggregator.GetEvent<SettingChanges>().Subscribe(HandleSettingChanges);
-            eventAggregator.GetEvent<RenderChanges>().Subscribe(HandleRenderChanges);
+            this.eventAggregator.GetEvent<PreferenceChanges>().Subscribe(HandlePreferenceChanges);
+            this.eventAggregator.GetEvent<SettingChanges>().Subscribe(HandleSettingChanges);
+            this.eventAggregator.GetEvent<RenderChanges>().Subscribe(HandleRenderChanges);
+        }
+
+        private void Listener_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "CurrentCPScore")
+            {
+                if(WhiteToMove)eventAggregator.GetEvent<EvalChanges>().Publish(listener.CurrentCPScore);
+                else eventAggregator.GetEvent<EvalChanges>().Publish(-listener.CurrentCPScore);
+            }
         }
 
         private void HandleRenderChanges(RenderSettings obj)
@@ -70,7 +89,7 @@ namespace ChessEngine.ViewModels
 
         private void HandleSettingChanges(GameSettings obj)
         {
-            obj.CopyTo(GameService.GetGameSetting());
+            obj.CopyTo(gameService.GetGameSetting());
         }
 
         private void HandlePreferenceChanges(UserPreferences obj)
@@ -146,7 +165,7 @@ namespace ChessEngine.ViewModels
 		public void DragFigureEnter(ChessFigure figure)
 		{
 			dynamic dynamicFigure = selectedFigure;
-			ChessMoveInfo MoveInfo = GameService.Check(board, dynamicFigure, figure);
+			ChessMoveInfo MoveInfo = gameService.Check(board, dynamicFigure, figure);
 			if (MoveInfo)
 			{
 				board[figure.Row, figure.Col].CursorOver = true;
@@ -198,9 +217,9 @@ namespace ChessEngine.ViewModels
 
 			dynamic dynamicFigure = selectedFigure;
 
-			ChessMoveInfo MoveInfo = GameService.Check(board, dynamicFigure, figure);
+			ChessMoveInfo MoveInfo = gameService.Check(board, dynamicFigure, figure);
 
-            if (MoveInfo.IsPromotion && GameService.GetGameSetting().Promotion)
+            if (MoveInfo.IsPromotion && gameService.GetGameSetting().Promotion)
 			{
                 if (userPreferences.AutoPromotion)
                 {
@@ -302,12 +321,20 @@ namespace ChessEngine.ViewModels
                 }
 			}
 
-			if (GameService.Process_move(board,MoveInfo))
+			if (gameService.Process_move(board, MoveInfo))
+            {
+                this.WhiteToMove = gameService.White_to_move();
 
-			this.WhiteToMove = GameService.White_to_move();
+                gameService.Check_for_end_condition(board, false);
+                gameService.Check_for_end_condition(board, true);
+
+                if (userPreferences.ShowStockfishEval)
+                {
+                    engineService.AddMove(boardParser.MoveParserUCI(MoveInfo));
+                    engineService.EvalPositionDepth(20);
+                }
+            }
 			
-			GameService.Check_for_end_condition(board, false);
-			GameService.Check_for_end_condition(board, true);
 		}
 
     }

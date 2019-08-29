@@ -1,4 +1,4 @@
-﻿using ChessEngine.Services.ProcessCommunication.Contracts;
+﻿using ChessEngine.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessEngine.Services.ProcessCommunication
+namespace ChessEngine.Services
 {
     public class ProcessService : IProccessService
     {
@@ -18,9 +18,11 @@ namespace ChessEngine.Services.ProcessCommunication
             process.StartInfo.FileName = filePath;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.CreateNoWindow = true;
             var output = new StringBuilder("");
             process.OutputDataReceived += new DataReceivedEventHandler(outputHandler);
             process.StartInfo.RedirectStandardInput = true;
+            
             process.Start();
             StreamWriter writer = process.StandardInput;
             process.BeginOutputReadLine();
