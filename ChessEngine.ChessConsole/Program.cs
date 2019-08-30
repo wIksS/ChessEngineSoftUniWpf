@@ -14,15 +14,15 @@ namespace ChessEngine.ChessConsole
     {
         static void Main(string[] args)
         {
-            IProccessService processService = new ProcessService();
-            IEnginePlayerService service = new EnginePlayerService(processService);
+            //IProccessService processService = new ProcessService();
+            //IEnginePlayerService service = new EnginePlayerService(processService);
 
-            service.InitPlayer(500);
-            while (true)
-            {
-                var move = Console.ReadLine();
-                Console.WriteLine(service.PlayMove(move).Result);
-            }
+            //service.InitPlayer(500);
+            //while (true)
+            //{
+            //    var move = Console.ReadLine();
+            //    Console.WriteLine(service.PlayMove(move).Result);
+            //}
         }
     }
 }

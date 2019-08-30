@@ -1,4 +1,6 @@
-﻿using ChessEngine.Services.ProcessCommunication.Contracts;
+﻿using ChessEngine.Data.Common.Events;
+using ChessEngine.Services.Events.Contracts;
+using ChessEngine.Services.ProcessCommunication.Contracts;
 using ChessEngine.Services.UCIEngine.Contracts;
 using System;
 using System.Diagnostics;
@@ -17,9 +19,15 @@ namespace ChessEngine.Services.UCIEngine
         private string engineMove;
         private EventWaitHandle waitHandle = new ManualResetEvent(false);
         private int waitingTime;
+        private string evaluation = "0";
+        private readonly IEventService<EvaluationChangeEventArgs> evaluationService;
+        private readonly IEventService<SettingsChangeEventArgs> settingsService;
 
-        public EnginePlayerService(IProccessService process)
+        public EnginePlayerService(IEventService<SettingsChangeEventArgs> settingsService, IProccessService process, IEventService<EvaluationChangeEventArgs> evaluationService)
         {
+            this.settingsService = settingsService;
+            settingsService.StateChanged += SettingsChangedHandler;
+            this.evaluationService = evaluationService;
             this.process = process;
             this.moves = new StringBuilder();
             engineMove = null;
@@ -34,8 +42,10 @@ namespace ChessEngine.Services.UCIEngine
         }
 
 
-        public async Task<string> PlayMove(string move)
+        public async Task<string> PlayMove(string move, bool autoplay=false)
         {
+            this.evaluationService.ChangeState(new EvaluationChangeEventArgs(evaluation, move));
+
             moves.Append(move + " ");
             writer.WriteLine("position startpos moves " + moves);
             writer.WriteLine("go infinite");
@@ -46,19 +56,38 @@ namespace ChessEngine.Services.UCIEngine
             waitHandle.WaitOne();
             waitHandle.Reset();
 
-            moves.Append(engineMove + " ");
+            this.evaluationService.ChangeState(new EvaluationChangeEventArgs(evaluation, engineMove));
+
+            if (autoplay)
+            {
+                moves.Append(engineMove + " ");
+            }
 
             return engineMove;
         }
 
         private void HandleOutputReceive(object sender, DataReceivedEventArgs e)
         {
+            var startIndex = e.Data.IndexOf("score cp");
+            if ( startIndex > -1)
+            {
+                var endIndex = e.Data.IndexOf(" ", startIndex + 9);
+                evaluation =
+                    e.Data.Substring(startIndex + 9,
+                    endIndex - (startIndex + 9));
+               
+            }
             if (e.Data.IndexOf("bestmove") > -1)
             {
 
                 engineMove = e.Data.Split()[1];
                 waitHandle.Set();
             }
+        }
+
+        private void SettingsChangedHandler(object sender, SettingsChangeEventArgs e)
+        {
+            this.waitingTime = e.WaitTime;
         }
     }
 }

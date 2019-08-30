@@ -10,6 +10,6 @@ namespace ChessEngine.Services.UCIEngine.Contracts
     {
         void InitPlayer(int waitingTimePerMove);
 
-        Task<string> PlayMove(string move);
+        Task<string> PlayMove(string move, bool autoplay = false);
     }
 }

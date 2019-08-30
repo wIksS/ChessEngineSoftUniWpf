@@ -17,7 +17,14 @@
     </i:Interaction.Triggers>
     
     <Grid>
-        <ItemsControl Margin="10"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+
+        </Grid.ColumnDefinitions>
+        <Frame Source="/Views/SettingsView.xaml"></Frame>
+        <ItemsControl Grid.Column="1" Margin="10"
               ItemsSource="{Binding ChessGrid}" Name="chessGrid">
   
             <ItemsControl.Template>
@@ -80,5 +87,6 @@
             </ItemsControl.ItemTemplate>
 
         </ItemsControl>
+        <Frame Grid.Column="2" Source="/Views/EvaluationView.xaml"></Frame>
     </Grid>
 </Page>

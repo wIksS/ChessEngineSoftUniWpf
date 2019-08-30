@@ -52,6 +52,9 @@
     <Compile Include="Engine\ChessRulesService.cs" />
     <Compile Include="Engine\Contracts\IChessGameService.cs" />
     <Compile Include="Engine\Contracts\IChessRulesService.cs" />
+    <Compile Include="Events\Contracts\IEventService.cs" />
+    <Compile Include="Events\SettingsService.cs" />
+    <Compile Include="Events\EvaluationService.cs" />
     <Compile Include="ProcessCommunication\Contracts\IProccessService.cs" />
     <Compile Include="ProcessCommunication\ProcessService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

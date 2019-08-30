@@ -31,3 +31,10 @@ C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debu
 C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.Fody.CopyLocal.cache
 C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
 C:\Users\Sadmin\Desktop\GitClone\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb
+C:\Users\Sadmin\Desktop\Chess\ChessEngineSoftUniWpf\ChessEngine.Data\bin\Debug\ChessEngine.Data.dll
+C:\Users\Sadmin\Desktop\Chess\ChessEngineSoftUniWpf\ChessEngine.Data\bin\Debug\ChessEngine.Data.pdb
+C:\Users\Sadmin\Desktop\Chess\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csprojAssemblyReference.cache
+C:\Users\Sadmin\Desktop\Chess\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.CoreCompileInputs.cache
+C:\Users\Sadmin\Desktop\Chess\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.csproj.Fody.CopyLocal.cache
+C:\Users\Sadmin\Desktop\Chess\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.dll
+C:\Users\Sadmin\Desktop\Chess\ChessEngineSoftUniWpf\ChessEngine.Data\obj\Debug\ChessEngine.Data.pdb

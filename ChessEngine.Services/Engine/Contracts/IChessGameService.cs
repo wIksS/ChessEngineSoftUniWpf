@@ -12,6 +12,6 @@ namespace ChessEngine.Services.Engine.Contracts
 		bool Fifty_move_rule();
 		bool Threefold_repetition();
 
-		bool Process_move(Square[,] Board, ChessMoveInfo MoveInfo);
+		bool ProcessMove(Square[,] Board, ChessMoveInfo MoveInfo);
 	}
 }

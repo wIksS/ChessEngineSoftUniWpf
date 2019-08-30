@@ -54,6 +54,8 @@
     <Compile Include="ChessFigure.cs" />
     <Compile Include="ChessMoveInfo.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Events\SettingsChangeEventArgs.cs" />
+    <Compile Include="Common\Events\EvaluationChangeEventArgs.cs" />
     <Compile Include="Common\SideType.cs" />
     <Compile Include="King.cs" />
     <Compile Include="Queen.cs" />

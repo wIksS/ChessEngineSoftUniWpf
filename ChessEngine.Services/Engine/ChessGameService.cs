@@ -27,7 +27,7 @@
 			return false;
 		}
 
-		public bool Process_move(Square[,] Board, ChessMoveInfo MoveInfo)
+		public bool ProcessMove(Square[,] Board, ChessMoveInfo MoveInfo)
 		{
 			if (!MoveInfo.IsAllowed) return false;
 

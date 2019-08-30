@@ -2,10 +2,13 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
     using System.Windows.Input;
     using ChessEngine.Data;
+    using ChessEngine.Data.Common.Events;
     using ChessEngine.Services.BoardGenerator.Contracts;
     using ChessEngine.Services.Engine.Contracts;
+    using ChessEngine.Services.Events.Contracts;
     using ChessEngine.Services.UCIEngine.Contracts;
 
     public class ChessGridViewModel
@@ -23,18 +26,23 @@
         private ICommand dragLeaveCommand;
         private ChessFigure selectedFigure;
         private Square[,] board;
+        private bool autoplay = false;
+        private readonly IEventService<SettingsChangeEventArgs> eventService;
 
-
-        public ChessGridViewModel(IChessMoveParserService parserService, IEnginePlayerService engineService, IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game)
+        public ChessGridViewModel(IEventService<SettingsChangeEventArgs> eventService, IChessMoveParserService parserService, IEnginePlayerService engineService, IBoardGeneratorService generator, IChessRulesService rules, IChessGameService game)
         {
+            this.eventService = eventService;
+            eventService.StateChanged += SettingChangedHandler;
             this.engineService = engineService;
-            engineService.InitPlayer(3000);
+            engineService.InitPlayer(300);
             this.GameService = game;
             this.generatorService = generator;
             this.rulesService = rules;
             this.ChessGrid = new ObservableCollection<Square>();
             this.parserService = parserService;
         }
+
+
 
         public ObservableCollection<Square> ChessGrid { get; set; }
 
@@ -141,16 +149,41 @@
 
             ChessMoveInfo moveInfo = rulesService.Check(board, dynamicFigure, figure);
 
-            if (GameService.Process_move(board, moveInfo))
+            if (GameService.ProcessMove(board, moveInfo))
             {
+                if (autoplay)
+                {
+                    await Autoplay(currentMove);
+                }
                 Tuple<int,int,int,int> engineMove = parserService.ParseString(await engineService.PlayMove(currentMove));
                 dynamic fromFigure = board[engineMove.Item1, engineMove.Item2].Figure;
                 dynamic toFigure = board[engineMove.Item3, engineMove.Item4].Figure;
 
                 moveInfo = rulesService.Check(board, fromFigure, toFigure);
-                GameService.Process_move(board, moveInfo);
+                GameService.ProcessMove(board, moveInfo);
             }
         }
 
+        private async Task Autoplay(string currentMove)
+        {
+            while (autoplay)
+            {
+                Tuple<int, int, int, int> engineMove = parserService.ParseString(await engineService.PlayMove(currentMove));
+                dynamic fromFigure = board[engineMove.Item1, engineMove.Item2].Figure;
+                dynamic toFigure = board[engineMove.Item3, engineMove.Item4].Figure;
+
+                var moveInfo = rulesService.Check(board, fromFigure, toFigure);
+                GameService.ProcessMove(board, moveInfo);
+                currentMove = parserService.CastPosition(engineMove.Item1,
+                    engineMove.Item2,
+                    engineMove.Item3,
+                    engineMove.Item4);
+            }
+        }
+
+        private void SettingChangedHandler(object sender, SettingsChangeEventArgs e)
+        {
+            this.autoplay = e.Autoplay;
+        }
     }
 }
