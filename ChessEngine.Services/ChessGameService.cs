@@ -152,29 +152,34 @@ namespace ChessEngine.Services
 			return PossibleMoves;
 		}
 
-		public bool Is_stalemate(Square[,] Board, bool IsWhite)
+		private bool Is_stalemate(Square[,] Board, bool IsWhite)
 		{
 			List<ChessMoveInfo> PossibleMoves = Get_all_possible_moves(Board, IsWhite);
 			return PossibleMoves.Count == 0;
 		}
 
-		public bool Is_checkmate(Square[,] Board, bool IsWhite)
+        private bool Is_checkmate(Square[,] Board, bool IsWhite)
 		{
 			bool IsStalemate = Is_stalemate(Board, IsWhite);
 			bool IsCheck = RuleService.Check_for_check(IsWhite, Board);
 			return IsStalemate & IsCheck;
 		}
 
-		public bool Fifty_move_rule()
+        private bool Fifty_move_rule()
 		{
 			return FiftyMoveCounter >= 50;
 		}
-		
-		public bool Threefold_repetition()
+
+        private bool Threefold_repetition()
 		{
 			foreach (var pos in FenPositionCounter) if (pos.Value >= 3) return true;
 			return false;
 		}
+
+        public string Get_full_fen(Square[,] Board)
+        {
+            return BoardParser.Generate_full_fen_from_board(Board, GameInfo.WhiteToMove, GameInfo.WKingSideCastle, GameInfo.BKingSideCastle, GameInfo.WQueenSideCastle, GameInfo.BQueenSideCastle, GameInfo.EnPasRow, GameInfo.EnPasCol, GameInfo.FiftyRuleCounter, GameInfo.FullMoveCounter);
+        }
 
 		public EndCondition Check_for_end_condition(Square[,] Board, bool IsWhite)
 		{
@@ -211,7 +216,7 @@ namespace ChessEngine.Services
 		public bool Process_move(Square[,] Board, ChessMoveInfo MoveInfo)
 		{
 			if (!MoveInfo.IsAllowed) return false;
-
+            
 			if (GameInfo.Settings.WhiteBlack) GameInfo.WhiteToMove = !GameInfo.WhiteToMove;
 			FiftyMoveCounter++;
 
@@ -227,10 +232,25 @@ namespace ChessEngine.Services
 			to.Figure.Col = to.Col;
 			to.Figure.Row = to.Row;
 
-			if (to.Figure.Name == "King")
-				(to.Figure as King).HasMoved = true;
-			if (to.Figure.Name == "Rook")
-				(to.Figure as Rook).HasMoved = true;
+            if (to.Figure.Name == "King") {
+                (to.Figure as King).HasMoved = true;
+                if (to.Figure.IsWhite) GameInfo.WKingSideCastle = GameInfo.WQueenSideCastle = false;
+                else GameInfo.BKingSideCastle = GameInfo.BQueenSideCastle = false;
+            }
+            else if (to.Figure.Name == "Rook")
+            {
+                (to.Figure as Rook).HasMoved = true;
+                if (to.Figure.IsWhite)
+                {
+                    if (to.Col == 0) GameInfo.WQueenSideCastle = false;
+                    if (to.Col == 7) GameInfo.WKingSideCastle = false;
+                }
+                else
+                {
+                    if (to.Col == 0) GameInfo.BQueenSideCastle = false;
+                    if (to.Col == 7) GameInfo.BKingSideCastle = false;
+                }
+            }
 
 			// Change from to empty
 			from.Figure = new Empty(from.Row, from.Col);
@@ -292,13 +312,28 @@ namespace ChessEngine.Services
 			{
 				Board[MoveInfo.EnPasRow, MoveInfo.EnPasCol].EnPasPossible = true;
 				Board[MoveInfo.EnPasRow, MoveInfo.EnPasCol].EnPasIsWhite = !to.Figure.IsWhite;
-			}
+                GameInfo.EnPasRow = MoveInfo.EnPasRow;
+                GameInfo.EnPasCol = MoveInfo.EnPasCol;
+            }
 
 #if QUICKFEN_THREEFOLD
 			string currFen = BoardParser.Generate_simple_fen_from_board(Board);
 			if (FenPositionCounter.ContainsKey(currFen)) FenPositionCounter[currFen] += 1;
 			else FenPositionCounter.Add(currFen, 1);
 #endif
+            // Reset old en passant if there was one
+            if (GameInfo.EnPasRow != Constants.OffBoard && GameInfo.EnPasCol != Constants.OffBoard)
+            {
+                if (GameInfo.WhiteToMove != Board[GameInfo.EnPasRow, GameInfo.EnPasCol].EnPasIsWhite)
+                {
+                    Board[GameInfo.EnPasRow, GameInfo.EnPasCol].EnPasPossible = false;
+                    GameInfo.EnPasRow = Constants.OffBoard;
+                    GameInfo.EnPasCol = Constants.OffBoard;
+                }
+            }
+
+            GameInfo.FullMoveCounter += (!GameInfo.WhiteToMove ? 1 : 0);
+            GameInfo.FiftyRuleCounter = FiftyMoveCounter;
 
 			GameInfo.History.Add(MoveInfo);
 

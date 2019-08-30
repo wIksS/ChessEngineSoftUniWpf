@@ -331,7 +331,8 @@ namespace ChessEngine.ViewModels
                 if (userPreferences.ShowStockfishEval)
                 {
                     engineService.AddMove(boardParser.MoveParserUCI(MoveInfo));
-                    engineService.EvalPositionDepth(20);
+                    string currFen = gameService.Get_full_fen(board);
+                    engineService.EvalPositionDepth(currFen,20);
                 }
             }
 			

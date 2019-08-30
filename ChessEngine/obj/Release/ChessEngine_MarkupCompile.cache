@@ -10,11 +10,11 @@ none
 false
 TRACE;TESTING_DRAGDROP
 C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine\App.xaml
-3-117389992
+91830028411
 
-172105569215
-19-2115273438
-Controls\ChessFigureView.xaml;MainWindow.xaml;Views\ChessGridView.xaml;
+201348876796
+26-1697273264
+Controls\ChessFigureView.xaml;Controls\EvalSliderView.xaml;Controls\OptionSwitchView.xaml;Controls\PromotionBlackView.xaml;Controls\PromotionWhiteView.xaml;MainWindow.xaml;Views\ChessGridView.xaml;Views\EngineEvalView.xaml;Views\MenuView.xaml;
 
 False
 

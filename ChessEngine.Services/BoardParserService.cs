@@ -103,7 +103,7 @@ namespace ChessEngine.Services
 			if (BKingSideCastle)  fen.Append("k");
 			if (BQueenSideCastle) fen.Append("q");
 
-			if (!(WKingSideCastle | WQueenSideCastle | BKingSideCastle | BQueenSideCastle))
+			if (!WKingSideCastle && !WQueenSideCastle && !BKingSideCastle && !BQueenSideCastle)
 			{
 				fen.Append("- ");
 			}

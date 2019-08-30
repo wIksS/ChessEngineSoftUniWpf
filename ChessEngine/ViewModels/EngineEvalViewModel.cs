@@ -13,7 +13,7 @@ namespace ChessEngine.ViewModels
     {
         private readonly IEventAggregator eventAggregator;
 
-        public int CP { get; set; } = 123;
+        public int CP { get; set; } = 0;
 
         public bool IsEnabled { get; set; } = true;
         private bool wasEnabled;

@@ -1,0 +1,14 @@
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\ChessEngine.EventAggregator.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\ChessEngine.EventAggregator.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\ChessEngine.Data.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\Prism.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\System.ValueTuple.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\ChessEngine.Data.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\Prism.pdb
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\Prism.xml
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\bin\Release\System.ValueTuple.xml
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Release\ChessEngine.EventAggregator.csprojAssemblyReference.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Release\ChessEngine.EventAggregator.csproj.CoreCompileInputs.cache
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Release\ChessEngine.EventAggregator.csproj.CopyComplete
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Release\ChessEngine.EventAggregator.dll
+C:\Users\HideLord\Desktop\Projects\ChessEngineSoftuni\ChessEngineSoftUniWpf\ChessEngine.EventAggregator\obj\Release\ChessEngine.EventAggregator.pdb

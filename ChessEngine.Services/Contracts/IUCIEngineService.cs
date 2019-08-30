@@ -13,6 +13,7 @@ namespace ChessEngine.Services.Contracts
         void PlayMoveDepth(string move, int depth);
         void PlayMoveTime(string move, int mseconds);
         void EvalPositionDepth(int depth);
+        void EvalPositionDepth(string fen, int depth);
         void Init(int breakAfterMiliseconds);
     }
 }

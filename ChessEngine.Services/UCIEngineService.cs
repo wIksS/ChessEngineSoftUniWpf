@@ -114,6 +114,14 @@ namespace ChessEngine.Services
             writer.WriteLine("go depth " + depth.ToString() + " movetime " + breakAfterMiliseconds.ToString()); //Maximum move time of 10 seconds
         }
 
+        public void EvalPositionDepth(string fen, int depth)
+        {
+            writer.WriteLine("stop");
+            writer.WriteLine("ucinewgame");
+            writer.WriteLine("position fen " + fen);
+            writer.WriteLine("go depth " + depth.ToString() + " movetime " + breakAfterMiliseconds.ToString()); //Maximum move time of 10 seconds
+        }
+
         private void HandleOutputReceive(object sender, DataReceivedEventArgs e)
         {
             Console.WriteLine(e.Data);
@@ -122,7 +130,7 @@ namespace ChessEngine.Services
                 string[] bestAndPonder = e.Data.Split();
 
                 bestMove = bestAndPonder[1];
-                ponder = bestAndPonder[3];
+                if(bestAndPonder.Length>=3)ponder = bestAndPonder[3];
                 foreach (UCIListener listener in listeners)
                 {
                     listener.BestMove = bestMove;
@@ -139,6 +147,13 @@ namespace ChessEngine.Services
                     listener.CurrentCPScore = currentCPScore;
                 }
                 waitHandle.Set();
+            }
+            else if(e.Data.IndexOf("mate") > -1)
+            {
+                foreach (UCIListener listener in listeners)
+                {
+                    listener.CurrentCPScore = 0;
+                }
             }
         }
         

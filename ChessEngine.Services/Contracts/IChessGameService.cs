@@ -21,5 +21,7 @@ namespace ChessEngine.Services.Contracts
 		GameSettings GetGameSetting();
 
 		bool White_to_move();
-	}
+
+        string Get_full_fen(Square[,] Board);
+    }
 }
